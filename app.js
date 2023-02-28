@@ -16,7 +16,7 @@ class ProductManager {
     if (existe) {
         return existe
       } else {
-        this.products.push({code,title,description,price,thumbnail,stock,products})
+        this.products.push(product1,product2,product3)
         return console.log(this.products)
       }
 
