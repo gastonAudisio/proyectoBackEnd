@@ -5,10 +5,10 @@ class ProductManager {
      
       this.products = [];
     }
-    addProduct=(code,title,description,price,thumbnail,stock)=>{
+    addProduct=(title,description,price,thumbnail,stock)=>{
       
       
-      const existe = this.products.some(el => el.ProductManager.code === parseInt(ProductManager.code))
+      const existe = this.products.some(el => el.code === parseInt(ProductManager.code))
       if (existe) {
         return console.log(existe)
       } else {
