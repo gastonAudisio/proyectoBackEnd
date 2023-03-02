@@ -1,0 +1,52 @@
+[
+
+    {
+        "id":1,
+        "nombre":"Heidi",
+        "genero":"Drama",
+        "precio":3500,
+        "img":"src/libros/heidi.svg",
+        "cantidad":1
+
+    },
+    {
+        "id":2,
+        "nombre":"Orgullo y Prejuicio",
+        "genero":"Drama",
+        "precio":4500,
+        "img":"src/libros/orgullosvg.svg ",
+        "cantidad":1
+    },
+    {
+        "id":3,
+        "nombre":"Frankenstein",
+        "genero":"Terror",
+        "precio":5600,
+        "img":"src/libros/franken.svg",
+        "cantidad":1
+    },
+    {
+        "id":4,
+        "nombre":"El libro de la Selva",
+        "genero":"Aventura",
+        "precio":2400,
+        "img":"src/libros/libroselva.svg",
+        "cantidad":1
+    },
+    {
+        "id":5,
+        "nombre":"1984",
+        "genero":"Ciencia Ficcion",
+        "precio":3700,
+        "img":"src/libros/1984.svg",
+        "cantidad":1
+    },
+    {
+        "id":6,
+        "nombre":"Billy Summers",
+        "genero":"Suspenso",
+        "precio":7800,
+        "img":"src/libros/billy.jpg",
+        "cantidad":1
+    }
+]
