@@ -1,52 +1,52 @@
 [
 
     {
-        "id":1,
-        "nombre":"Heidi",
-        "genero":"Drama",
-        "precio":3500,
-        "img":"src/libros/heidi.svg",
-        "cantidad":1
+        
+        "title":"Heidi",
+        "description":"Drama",
+        "price":3500,
+        "thumbnail":"src/libros/heidi.svg",
+        "stock":3
 
     },
     {
-        "id":2,
-        "nombre":"Orgullo y Prejuicio",
-        "genero":"Drama",
-        "precio":4500,
-        "img":"src/libros/orgullosvg.svg ",
-        "cantidad":1
+        
+        "title":"Orgullo y Prejuicio",
+        "description":"Drama",
+        "price":4500,
+        "thumbnail":"src/libros/orgullosvg.svg ",
+        "stock":6
     },
     {
-        "id":3,
-        "nombre":"Frankenstein",
-        "genero":"Terror",
-        "precio":5600,
-        "img":"src/libros/franken.svg",
-        "cantidad":1
+        
+        "title":"Frankenstein",
+        "description":"Terror",
+        "price":5600,
+        "thumbnail":"src/libros/franken.svg",
+        "stock":2
     },
     {
-        "id":4,
-        "nombre":"El libro de la Selva",
-        "genero":"Aventura",
-        "precio":2400,
-        "img":"src/libros/libroselva.svg",
-        "cantidad":1
+        
+        "title":"El libro de la Selva",
+        "description":"Aventura",
+        "price":2400,
+        "thumbnail":"src/libros/libroselva.svg",
+        "stock":7
     },
     {
-        "id":5,
-        "nombre":"1984",
-        "genero":"Ciencia Ficcion",
-        "precio":3700,
-        "img":"src/libros/1984.svg",
-        "cantidad":1
+        
+        "title":"1984",
+        "description":"Ciencia Ficcion",
+        "price":3700,
+        "thumbnail":"src/libros/1984.svg",
+        "stock":4
     },
     {
-        "id":6,
-        "nombre":"Billy Summers",
-        "genero":"Suspenso",
-        "precio":7800,
-        "img":"src/libros/billy.jpg",
-        "cantidad":1
+        
+        "title":"Billy Summers",
+        "description":"Suspenso",
+        "price":7800,
+        "thumbnail":"src/libros/billy.jpg",
+        "stock":5
     }
 ]
