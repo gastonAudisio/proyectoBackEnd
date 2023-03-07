@@ -82,25 +82,10 @@ class ProductManager {
       }
 
 //----------------------------------------------------------------
-    
-    updateProduct = async (productId, updatedData) => {
-      const fileContent = await fs.promises.readFile(this.path, "utf-8")
-      const fileContentParsed = await JSON.parse(fileContent)
 
-      if (await this.getProductById(productId)) {
-        const newArr = fileContentParsed.map((item) => {
-          return productId == item.productId ? { ...item, ...updatedData } : item 
-        })
-        console.log( { ...item, ...updatedData });
-        await fs.promises.writeFile(this.path, JSON.stringify(newArr))
-      } else {
-        console.log(`Product ID ${productId} does not exist`)
-      }
+
     }
-    }
-
-
-
-
   module.exports = ProductManager;
+/*
 
+*/

@@ -19,7 +19,7 @@ const executeApp = async () => {
         //await productManager.getProducts();
         //await productManager.getProductById(1678045600176); 
        // await productManager.deleteProduct(1678045609987);
-        await productManager.updateProduct(1678045600176,{price:4000});
+       // await productManager.updateProduct(1678045600176,{price:4000});
        // await productManager.deleteAllProducts();
       } catch (error) {
         console.error(error);
