@@ -6,17 +6,13 @@ class ProductManager {
     }
     addProduct = async (newProduct) => {
       try {
-        const filenameExists = fs.existsSync(this.path);
-  
-        
+        const filenameExists = fs.existsSync(this.path);     
         if (!filenameExists) {
           await fs.promises.writeFile(this.path, "[]");
         }
-  
         const addNewProduct = {
           productId: Date.now(),
-          ...newProduct,
-          
+          ...newProduct,  
         };
   
         const fileContent = await fs.promises.readFile(this.path, "utf-8");
@@ -82,7 +78,19 @@ class ProductManager {
       }
 
 //----------------------------------------------------------------
-
+updateProduct = async (id,updateData) => {
+  const update = {...updateData};
+    
+    if(this.getProductById(id)){
+    const fileContent = await fs.promises.readFile(this.path, "utf-8");
+    const fileContentParsed = JSON.parse(fileContent);
+    fileContentParsed.push(update);
+    await fs.promises.writeFile(this.path,JSON.stringify(fileContentParsed, null, 2));
+    console.log("producto modificado");
+    console.log(fileContentParsed);
+    }
+    else console.log("no se ha encontrado el producto");
+};
 
     }
   module.exports = ProductManager;
