@@ -87,7 +87,7 @@ updateProduct = async (id,updateData) => {
     fileContentParsed.push(update);
     await fs.promises.writeFile(this.path,JSON.stringify(fileContentParsed, null, 2));
     console.log("producto modificado");
-    console.log(fileContentParsed);
+    console.log(update);
     }
     else console.log("no se ha encontrado el producto");
 };
