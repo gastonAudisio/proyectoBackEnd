@@ -1,11 +1,11 @@
-import express from 'express';
-
-const ProductManager = import("./ProductManager");
-const products = "./DB.json"
+const express = require('express');
+const app = express();
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+const ProductManager = require("../../ProductManager");
+const products = "../../DB.json"
 const productManager = new ProductManager(products);
 
-
-const app = express();
 const PORT = 8080
 
 app.listen(PORT,()=>{
@@ -13,16 +13,18 @@ app.listen(PORT,()=>{
 })
 
  app.get('/products', (req,res)=>{
-    res.send(products)
+    
+    res.send(productManager.getProducts(products))
 })
 
 
 /*
-app.get('/:userId', (req, res) => {
-    // hacemos una busqueda
-    const usuario = usuarios.find(u => u.id === req.params.userId);
-    if (usuario) {
-        res.send(usuario)
+app.get('/:productId',async (req, res) => {
+
+    const product = await productManager.getProductById(req.params.productId)
+
+    if (product) {
+        res.send(product)
     }
-    res.send({ messasge: "Usuario no encontrado!!" })
+    res.send({ messasge: "Producto no encontrado!!" })
 })*/
