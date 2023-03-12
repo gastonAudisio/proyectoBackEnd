@@ -3,7 +3,7 @@ const ProductManager = require("./ProductManager");
 const PATH = "./DB.json";
 
 const productManager = new ProductManager(PATH);
-
+let updateProductId = 1678045600176;
 const executeApp = async () => {
    /* await productManager.addProduct({
 
@@ -20,8 +20,9 @@ const executeApp = async () => {
         //await productManager.getProductById(1678045600176); 
        // await productManager.deleteProduct(1678045609987);
         await productManager.updateProduct(
-                1678045600176,
+                updateProductId,
                 {
+                productID:updateProductId,
                 id:3,
                 title:"Billy Summers",
                 description:"Suspenso",
