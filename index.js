@@ -19,7 +19,16 @@ const executeApp = async () => {
         //await productManager.getProducts();
         //await productManager.getProductById(1678045600176); 
        // await productManager.deleteProduct(1678045609987);
-        await productManager.updateProduct(1678045600176,{price:400000});
+        await productManager.updateProduct(
+                1678045600176,
+                {
+                id:3,
+                title:"Billy Summers",
+                description:"Suspenso",
+                price:4000,
+                thumbnail:"src/libros/billy.jpg",
+                stock:5,
+                });
        // await productManager.deleteAllProducts();
       } catch (error) {
         console.error(error);
