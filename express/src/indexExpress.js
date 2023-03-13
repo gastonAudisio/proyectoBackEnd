@@ -8,10 +8,7 @@ const DB = "../../DB.json"
 const products = require(DB)
 const productManager = new ProductManager(DB);
 
-/*
-products.forEach(element => {
-    productManager.addProduct(element)
-});*/
+
 
 app.listen(PORT,()=>{
     console.log(`server run in port:${PORT}`);
