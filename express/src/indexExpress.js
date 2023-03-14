@@ -19,10 +19,10 @@ app.get('/products', (req,res)=>{
 })
 //-------------------------------------------------------------------
 app.get('/products/:id', (req, res) => {
-    const product =  productManager.getProductById(Number.parseInt(req.params.id))  
-
+    //const product = productManager.getProductById(Number.parseInt(req.params.id))  
+    const product = products.find(u => u.productId === Number.parseInt(req.params.id));
     if (product) {
-        res.send(product)
+        res.json(product)
     }
     res.send({ messasge: "Producto no encontrado!!" })
 })
