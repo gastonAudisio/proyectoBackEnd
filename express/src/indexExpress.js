@@ -4,7 +4,7 @@ const PORT = 8080;
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const ProductManager = require("../../ProductManager");
-const DB = "./DB.json"
+const DB = "../../DB.json"
 const products = require(DB)
 const productManager = new ProductManager(DB);
 
