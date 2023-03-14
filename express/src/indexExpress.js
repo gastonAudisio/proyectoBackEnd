@@ -20,6 +20,7 @@ app.get('/products', (req,res)=>{
 //-------------------------------------------------------------------
 app.get('/products/:id', (req, res) => {
     //const product = productManager.getProductById(Number.parseInt(req.params.id))  
+    // No me funciona con el metodo getProductById de la clase productManager
     const product = products.find(u => u.productId === Number.parseInt(req.params.id));
     if (product) {
         res.json(product)
