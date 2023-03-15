@@ -5,31 +5,31 @@ const PATH = "./DB.json";
 const productManager = new ProductManager(PATH);
 let updateProductId = 1678045600176;
 const executeApp = async () => {
-   /* await productManager.addProduct({
+    /* await productManager.addProduct({
 
-        id:3,
-        title:"Billy Summers",
-        description:"Suspenso",
-        price:7800,
-        thumbnail:"src/libros/billy.jpg",
+        id:2,
+        title:"Frankenstein",
+        description:"Terror",
+        price:5900,
+        thumbnail:"src/libros/franken.svg",
         stock:5,
 
+        
      });*/
      try {
-        //await productManager.getProducts();
+        await productManager.getProducts();
         //await productManager.getProductById(1678045600176); 
        // await productManager.deleteProduct(1678045609987);
-        await productManager.updateProduct(
+       /* await productManager.updateProduct(
                 updateProductId,
                 {
-                productID:updateProductId,
-                id:3,
-                title:"Billy Summers",
-                description:"Suspenso",
-                price:4000,
-                thumbnail:"src/libros/billy.jpg",
-                stock:5,
-                });
+                        id:2,
+                        title:"Frankenstein",
+                        description:"Terror",
+                        price:5600,
+                        thumbnail:"src/libros/franken.svg",
+                        stock:2,
+                });*/
        // await productManager.deleteAllProducts();
       } catch (error) {
         console.error(error);
