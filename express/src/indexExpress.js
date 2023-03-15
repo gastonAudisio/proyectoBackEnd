@@ -32,3 +32,5 @@ app.get('/products/:id', (req, res) => {
 // http://localhost:8080/products/
 
 // http://localhost:8080/products/1678045567261
+
+// http://localhost:8080/products/?limit=1
