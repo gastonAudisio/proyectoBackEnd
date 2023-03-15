@@ -64,4 +64,26 @@ executeApp();
         price:7800,
         thumbnail:"src/libros/billy.jpg",
         stock:5,
+
+        id:4,
+        title:"1984",
+        description:"Distopìa",
+        price:4400,
+        thumbnail:"src/libros/1984.jpg",
+        stock:6,
+
+        id:5,
+        title:"Heidi",
+        description:"Drama",
+        price:2900,
+        thumbnail:"src/libros/heidi.jpg",
+        stock:5,
+
+        id:6,
+        title:"Orgullo y Prejuicio",
+        description:"Drama",
+        price:5900,
+        thumbnail:"src/libros/orgullosvg.jpg",
+        stock:5,
+
         */
