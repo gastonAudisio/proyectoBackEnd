@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // //Routers
-app.use("/api/product", productRouter);
-app.use("/api/user", cartsRouter);
+app.use("/api/products", productRouter);
+app.use("/api/carts", cartsRouter);
 
 app.get("/", (req, res)=>{
    res.send("Hola mundo!");

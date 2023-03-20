@@ -1,13 +1,13 @@
-import crypto from 'node:crypto';
+
 import fs from 'node:fs';
 
 
 class User{
-    constructor(nombre, apellido, username, password){
+    constructor(nombre, apellido, username ){
         this.nombre = nombre;
         this.apellido = apellido;
         this.username = username;
-        this.password = password;
+        
     }
 };
 
@@ -17,10 +17,7 @@ class UserManager {
     #usersFilePath;
     #fileSystem;
 
-    #crypto = crypto;
-    #algorithm = 'aes-256-cbc';
-    #key = this.#crypto.randomBytes(32);
-    #iv = this.#crypto.randomBytes(16);
+    
 
     constructor(){
         this.#users = new Array();
@@ -38,11 +35,9 @@ class UserManager {
         }
     }
 
-    crearUsuario = async (nombre, apellido, username, password) => {
-        let usuarioNuevo = new User(nombre, apellido, username, this.encrypt(password));
-        //Le guardamos la llave y el iv al usuario para poder desencriptar o hashear.
-        usuarioNuevo.key = this.#key.toString('hex');
-        usuarioNuevo.iv = this.#iv.toString('hex');
+    crearUsuario = async (nombre, apellido, username) => {
+        let usuarioNuevo = new User(nombre, apellido, username);
+
         console.log("Crear Usuario: usuario a registrar:");
         console.log(usuarioNuevo);
         try {
@@ -87,53 +82,7 @@ class UserManager {
         }
     }
 
-    validarUsuario = async (username, password) => {
-        try {
-            await this.consultarUsuarios();
-            //Validar que el username exista:
-            const user = this.#users.find(u => u.username === username);
-            if (user){
-                console.log("Usuario encontrado: " + user.username);
-                let newHashPassword = this.#encrypt(password, user.key, user.iv);
-                console.log(`Credenciales a evaluar: 
-                    Password ingresado: ${newHashPassword}, password en obtenido del usuario: ${user.password}`);
-                newHashPassword === user.password ? console.log("Login exitoso!")
-                    : console.log("Login no fue exisoto, revise sus credenciales.");
-            
-            } else {
-                console.warn("Usuario no encontrado por username: " + username);
-            }
-        } catch (error) {
-            console.error(`Error validando credenciales del usuario: ${username}, 
-                detalle del error: ${error}`);
-            throw Error(`Error validando credenciales del usuario: ${username}, 
-            detalle del error: ${error}`);
-        }
-    }
-
-    #encrypt = (text, key, iv) => {
-        let cipher = this.#crypto.createCipheriv(this.#algorithm, Buffer.from(key, 'hex'), Buffer.from(iv, 'hex'));
-        let encrypted = cipher.update(text);
-        encrypted = Buffer.concat([encrypted, cipher.final()]);
-        return encrypted.toString('hex');
-    }
-
-    encrypt = (text) => {
-        let cipher = this.#crypto.createCipheriv(this.#algorithm, Buffer.from(this.#key), this.#iv);
-        let encrypted = cipher.update(text);
-        encrypted = Buffer.concat([encrypted, cipher.final()]);
-        return encrypted.toString('hex');
-    }
-
-    decrypt = (text) => {
-        console.log("Descifrando texto hasheado: " + text);
-        let iv = Buffer.from(this.#iv, 'hex');
-        let encryptedText = Buffer.from(text, 'hex');
-        let decipher = this.#crypto.createDecipheriv(this.#algorithm, Buffer.from(this.#key), iv);
-        let decrypted = decipher.update(encryptedText);
-        decrypted = Buffer.concat([decrypted, decipher.final()]);
-        return decrypted.toString();
-    }
+    
 };
 
 export default UserManager;

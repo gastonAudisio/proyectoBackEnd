@@ -1,0 +1,180 @@
+[
+  {
+    "code": "1",
+    "title": "Heidi",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 3
+  },
+  {
+    "code": "2",
+    "title": "Frankenstein",
+    "description": "Terror",
+    "price": 5600,
+    "thumbnail": "src/libros/franken.svg",
+    "stock": 2
+  },
+  {
+    "code": "3",
+    "title": "Billy Summers",
+    "description": "Suspenso",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5
+  },
+  {
+    "code": "4",
+    "title": "1984",
+    "description": "DIstopìa",
+    "price": 4400,
+    "thumbnail": "src/libros/1984.svg",
+    "stock": 6
+  },
+  {
+    "code": "5",
+    "title": "Heidi",
+    "description": "Drama",
+    "price": 2900,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 2
+  },
+  {
+    "code": "6",
+    "title": "Orgullo y Prejuicio",
+    "description": "Drama",
+    "price": 5900,
+    "thumbnail": "src/libros/orgullosvg.svg",
+    "stock": 4
+  },
+  {
+    "code": "7",
+    "title": "pumba",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 3
+  },
+  {
+    "code": "8",
+    "title": "lala",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "code": "9",
+    "title": "g",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679330746320,
+    "code": "10",
+    "title": "gooo",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679334087842,
+    "code": "11",
+    "title": "dada",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679334399972,
+    "code": "12",
+    "title": "akaka",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679334456930,
+    "code": "13",
+    "title": "aaaa",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679335964137,
+    "code": "14",
+    "title": "aaaa",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679336004753,
+    "code": "15",
+    "title": "ggggga",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679336256116,
+    "code": "16",
+    "title": "DD",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679336286726,
+    "code": "17",
+    "title": "eEe",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679336444941,
+    "code": "18",
+    "title": "edddde",
+    "description": "Drama",
+    "price": 3500,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 6
+  },
+  {
+    "productId": 1679336561401,
+    "code": 18,
+    "title": "reemplazo",
+    "description": "Terror",
+    "price": 5600,
+    "thumbnail": "src/libros/franken.svg",
+    "stock": 2
+  },
+  {
+    "code": 19,
+    "title": "reemplazo",
+    "description": "Terror",
+    "price": 5600,
+    "thumbnail": "src/libros/franken.svg",
+    "stock": 2
+  },
+  {
+    "code": 2,
+    "title": "Frankenstein",
+    "description": "Terror",
+    "price": 5600,
+    "thumbnail": "src/libros/franken.svg",
+    "stock": 2
+  }
+]

@@ -1,36 +1,51 @@
 import {Router} from "express";
-import UserManager from "../service/UserManagerCripto.js";
+import ProductManager from "../service/ProductManager.js";
 
-const userManager = new UserManager();
+const userManager = new ProductManager();
 const router = Router();
 
 
 // construir los endpoints
 router.get("/", async (req, res) => {
-    console.log("Consultando usuarios GET.");
+    console.log("Consultando productos GET.");
     try {
-        let usuarios = await userManager.consultarUsuarios();
+        let usuarios = await userManager.getProduct();
         const limit = req.query.limit;
         if (limit){
             usuarios = usuarios.slice(0, parseInt(limit));
         }
         res.send(usuarios);
     }catch (error){
-        console.log("Error consultando los usuarios. Error: " + error); 
-        res.status(500, {error: "Error consultando los usuario", mensagge: error});
+        console.log("Error consultando los productos. Error: " + error); 
+        res.status(500, {error: "Error consultando los productos", mensagge: error});
     }
 });
+
 
 router.post("/", async (req, res) =>{
     try {
-        console.log("llamando a Crear usuario:");
+        console.log("llamando a Crear producto:");
         const user = req.body;
-        await userManager.crearUsuario(user.name, user.lastName, user.username, user.password);
-        res.status(201).send({mensaje: "Usuario creado con éxito! Con username:" + user.username});
+        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock);
+        res.status(201).send({mensaje: "producto creado con éxito! Con username:" + user.productId});
     } catch (error) {
-        console.log("Error guardando usuario. Error: " + error); 
-        res.status(500).send({error: "Error guardando usuario", mensagge: error});
+        console.log("Error guardando producto. Error: " + error); 
+        res.status(500).send({error: "Error guardando producto", mensagge: error});
     }
 });
 
+router.delete("/", async (req, res) =>{
+    try {
+        console.log("llamando a eliminar producto:");
+        const user = req.body;
+        await userManager.deleteProduct(user.productId);
+        res.status(201).send({mensaje: "producto eliminado con éxito! Con producto:" + user.productId});
+    } catch (error) {
+        console.log("Error guardando producto. Error: " + error); 
+        res.status(500).send({error: "Error guardando producto", mensagge: error});
+    }
+});
+
+
 export default router;
+

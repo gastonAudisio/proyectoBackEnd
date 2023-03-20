@@ -1,35 +1,64 @@
 import {Router} from "express";
+import ProductManager from "../service/ProductManager.js";
 
 const router = Router();
-
-let productos = [
-    {id: 1, name: "Zapatos"},
-    {id: 2, name: "Deportes"},
-    {id: 3, name: "Electronicos"}
-];
+const userManager = new ProductManager();
 
 
-// armar los endpoints
-router.get("/", (req, res) => {
-    console.log("Listado de productos: ");
-    console.log(productos);
-    res.send(productos);
-});
-
-router.get("/:id", (req, res) => {
-    console.log(req.params); //URL /
-    console.log(req.query); //URL/queryParams ?variable=valor&variable2=valor
-    const productId = parseInt(req.params.id);
-    if(productId){
-        let productIndex  = productos.findIndex((p) => p.id === productId);
-        res.send(productIndex === -1 ? "Producto no encontrado" : productos[productIndex]);
-    }else {
-       res.status(400).send({error: "400", menssage: "El id es invalido o no existe."});
+//-------------------------------------------------------------------
+router.get("/", async (req, res) => {
+    console.log("Consultando productos GET.");
+    try {
+        let usuarios = await userManager.getProduct();
+        const limit = req.query.limit;
+        if (limit){
+            usuarios = usuarios.slice(0, parseInt(limit));
+        }
+        res.send(usuarios);
+    }catch (error){
+        console.log("Error consultando los productos. Error: " + error); 
+        res.status(500, {error: "Error consultando los productos", mensagge: error});
     }
-    res.send(productos);
+});
+//-------------------------------------------------------------------
+router.post("/", async (req, res) =>{
+    try {
+        console.log("llamando a Crear producto:");
+        const user = req.body;
+        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock );
+        res.status(201).send({mensaje: "producto creado con éxito! Con Id:" + user.productId});
+    } catch (error) {
+        console.log("Error guardando producto. Error: " + error); 
+        res.status(500).send({error: "Error guardando producto", mensagge: error});
+    }
+});
+
+//-------------------------------------------------------------------
+
+router.get("/:pid", async (req, res) => {
+    const productId = parseInt(req.params.pid);
+    let productById = await userManager.getProductById(productId);
+    res.send(productById)
 });
 
 
+//-------------------------------------------------------------------
+router.put("/:pid", async (req, res) => {
+    const productId = parseInt(req.params.pid);
+    let productById = await userManager.updateProduct(productId,{
+        productId:productId,
+        code:18,
+        title:"reemplazo",
+        description:"Terror",
+        price:5600,
+        thumbnail:"src/libros/franken.svg",
+        stock:2,
+});
+    res.send(productById)
+    res.status(201).send({mensaje: "producto modificado con éxito!"});
+});
+
+//-------------------------------------------------------------------
 
 
 export default router;
