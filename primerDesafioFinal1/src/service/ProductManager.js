@@ -161,4 +161,3 @@ deleteProduct = async (productId) => {
 
 
 export default ProductManager;
-
