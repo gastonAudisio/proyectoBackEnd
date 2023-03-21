@@ -48,14 +48,14 @@ router.put("/:pid", async (req, res) => {
     const productId = parseInt(req.params.pid);
     let productById = await userManager.updateProduct(productId,{
         productId:productId,
-        code:111,
+        code:"111",
         title:"reemplazoooooooo",
         description:"lala",
         price:5600,
         thumbnail:"src/libros/franken.svg",
         stock:2,
 });
-    res.send(productById)
+    //res.send(productById)
     res.status(201).send({mensaje: "producto modificado con éxito!"});
 });
 
