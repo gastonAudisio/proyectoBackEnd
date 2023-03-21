@@ -1,4 +1,4 @@
-/*
+
 import {Router} from "express";
 import CartManager from "../service/CartManager";
 
@@ -23,33 +23,23 @@ router.get("/", async (req, res) => {
 });
 //-------------------------------------------------------------------
 
-router.post("/", async (req, res) =>{
+router.post("/:cartId/products", async (req, res) => {
     try {
-        console.log("llamando a Crear cart:");
-        const user = req.body;
-        await userManager.addCart( user.cartId);
-        res.status(201).send({mensaje: "producto creado con éxito! Con username:" + user.cartId});
+        console.log("llamando a Crear producto:");
+        const cartId = req.params.cartId;
+        const { product, quantity } = req.body;
+        await userManager.addProduct(cartId, product, quantity);
+        res.status(201).send({ mensaje: `Producto agregado con éxito al carrito ${cartId}!`, product, quantity });
     } catch (error) {
         console.log("Error guardando producto. Error: " + error); 
         res.status(500).send({error: "Error guardando producto", mensagge: error});
     }
 });
 //-------------------------------------------------------------------
-router.post("/", async (req, res) =>{
-    try {
-        console.log("llamando a Crear producto:");
-        const user = req.body;
-        await userManager.addProduct(user.products,user.quantity);
-        res.status(201).send({mensaje: "producto agregado con éxito!:" + user.products});
-    } catch (error) {
-        console.log("Error guardando producto. Error: " + error); 
-        res.status(500).send({error: "Error guardando producto", mensagge: error});
-    }
-});
 
 export default router;
-*/
 
+/*
 
 import {Router} from "express";
 import ProductManager from "../service/ProductManager.js";
@@ -101,3 +91,4 @@ router.delete("/", async (req, res) =>{
 
 
 export default router;
+*/
