@@ -1,4 +1,4 @@
-/*
+
 import fs from 'node:fs';
 
 class Cart{
@@ -37,33 +37,30 @@ class CartManager {
   //----------------------------------------------------------------------------
 
     addCart = async (cartId) => {
-        let usuarioNuevo = new Cart(cartId);
-        const addNewCart = {
-            cartId: Date.now(),
-            ...usuarioNuevo,  
-        };
-        console.log("Crear Cart:");
-        console.log(usuarioNuevo);
-        try {
-            await this.#prepararDirectorioBase();
-            await this.getCart();
-            
-            if (this.#users.find(u => u.cartId === addNewCart.cartId)) {
-                console.warn("El cart ya existe, revise los datos nuevamente.");
-            } else {
-            
-                this.#users.push(addNewCart);
-                console.log("Lista actualizada de carts: ");
-                console.log(this.#users);
-                //Se sobreescribe el archivos de usuarios para persistencia.
-                await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users,null, 2));
-            }
-        } catch (error) {
-            console.error(`Error creando producto nuevo: ${JSON.stringify(addNewCart)}, detalle del error: ${error}`);
-            throw Error(`Error creando producto nuevo: ${JSON.stringify(addNewCart)}, detalle del error: ${error}`);
-        }
-        }
-    
+  const newCart = new Cart(cartId);
+  const addNewCart = {
+    ...newCart,
+    cartId: Date.now()
+  };
+  console.log("Crear Cart:");
+  console.log(newCart);
+  try {
+    await this.#prepararDirectorioBase();
+    await this.getCart();
+    if (this.#users.find(u => u.cartId === addNewCart.cartId)) {
+      console.warn("El cart ya existe, revise los datos nuevamente.");
+    } else {
+      this.#users.push(addNewCart);
+      console.log("Lista actualizada de carts: ");
+      console.log(this.#users);
+      //Se sobreescribe el archivos de usuarios para persistencia.
+      await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users,null, 2));
+    }
+  } catch (error) {
+    console.error(`Error creando producto nuevo: ${JSON.stringify(addNewCart)}, detalle del error: ${error}`);
+    throw Error(`Error creando producto nuevo: ${JSON.stringify(addNewCart)}, detalle del error: ${error}`);
+  }
+}
   //----------------------------------------------------------------------------
 
     getCart = async () =>{
@@ -88,27 +85,21 @@ class CartManager {
   //----------------------------------------------------------------------------
 
     getCartById = async (cartId) => {
-        try {
-        await this.#prepararDirectorioBase();
-        await this.getCart();
-        const productFinded = this.#users.find(
-            (product) => product.cartId === cartId
-        );
-    
-        if (!productFinded) throw new Error(`Product ${cartId} Not Found!`);
-            console.log("---------getProductById----------");
-            console.log(productFinded);
-            return(productFinded);
-            
-        } catch (error) {
-        throw error;
-        }
-    
-        }
+  try {
+    await this.#prepararDirectorioBase();
+    await this.getCart();
+    const cartFinded = this.#users.find((cart) => cart.cartId === cartId);
+    if (!cartFinded) throw new Error(`Cart ${cartId} Not Found!`);
+    console.log("---------getCartById----------");
+    console.log(cartFinded);
+    return cartFinded;
+  } catch (error) {
+    throw error;
+  }
+}
   //----------------------------------------------------------------------------
 
 }
 
 export default CartManager;
 
-*/

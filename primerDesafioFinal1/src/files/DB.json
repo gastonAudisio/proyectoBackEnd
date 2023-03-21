@@ -118,5 +118,8 @@
     "price": 2900,
     "thumbnail": "src/libros/heidi.svg",
     "stock": 2
+  },
+  {
+    "productId": 1679364479301
   }
 ]
