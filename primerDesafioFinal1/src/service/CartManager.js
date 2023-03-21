@@ -4,7 +4,7 @@ import fs from 'node:fs';
 class Cart{
     constructor(cartId){
         this.cartId = cartId;
-
+        this.products = [];
     }
 };
 
@@ -39,7 +39,7 @@ class CartManager {
     addCart = async (cartId) => {
         let usuarioNuevo = new Cart(cartId);
         const addNewCart = {
-            productId: Date.now(),
+            cartId: Date.now(),
             ...usuarioNuevo,  
         };
         console.log("Crear Cart:");
@@ -49,11 +49,11 @@ class CartManager {
             await this.getCart();
             
             if (this.#users.find(u => u.cartId === addNewCart.cartId)) {
-                console.warn("El producto ya existe, revise los datos nuevamente.");
+                console.warn("El cart ya existe, revise los datos nuevamente.");
             } else {
             
                 this.#users.push(addNewCart);
-                console.log("Lista actualizada de Productos: ");
+                console.log("Lista actualizada de carts: ");
                 console.log(this.#users);
                 //Se sobreescribe el archivos de usuarios para persistencia.
                 await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users,null, 2));
@@ -109,4 +109,6 @@ class CartManager {
 
 }
 
-export default CartManager;*/
+export default CartManager;
+
+*/

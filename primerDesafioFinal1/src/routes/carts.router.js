@@ -48,15 +48,16 @@ router.post("/", async (req, res) =>{
 });
 
 export default router;
-
 */
+
+
 import {Router} from "express";
 import ProductManager from "../service/ProductManager.js";
 
 const userManager = new ProductManager();
 const router = Router();
 
-
+//-------------------------------------------------------------------
 // construir los endpoints
 router.get("/", async (req, res) => {
     console.log("Consultando productos GET.");
@@ -72,7 +73,7 @@ router.get("/", async (req, res) => {
         res.status(500, {error: "Error consultando los productos", mensagge: error});
     }
 });
-
+//-------------------------------------------------------------------
 
 router.post("/", async (req, res) =>{
     try {
@@ -85,7 +86,7 @@ router.post("/", async (req, res) =>{
         res.status(500).send({error: "Error guardando producto", mensagge: error});
     }
 });
-
+//-------------------------------------------------------------------
 router.delete("/", async (req, res) =>{
     try {
         console.log("llamando a eliminar producto:");

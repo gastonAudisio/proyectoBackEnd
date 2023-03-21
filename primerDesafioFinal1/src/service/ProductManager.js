@@ -87,7 +87,7 @@ getProduct = async () =>{
       console.error(`Error consultando los usuarios por archivo, valide el archivo: ${this.#userDirPath}, 
           detalle del error: ${error}`);
       throw Error(`Error consultando los usuarios por archivo, valide el archivo: ${this.#userDirPath},
-       detalle del error: ${error}`);
+      detalle del error: ${error}`);
   }
 }
 //----------------------------------------------------------------------------
@@ -105,6 +105,7 @@ getProductById = async (productId) => {
 
     if (!productFinded) throw new Error(`Product ${productId} Not Found!`);
       console.log("---------getProductById----------");
+      console.log(productFinded);
       return(productFinded);
   } catch (error) {
     throw error;
@@ -114,6 +115,55 @@ getProductById = async (productId) => {
 
 //----------------------------------------------------------------------------
 
+updateProduct = async (productId, updateData) => {
+  try {
+    await this.#prepararDirectorioBase();
+    const productIndex = this.#users.findIndex((product) => product.productId === productId);
+    if (productIndex === -1) {
+      throw new Error(`Product ${productId} not found!`);
+    }
+    const updatedProduct = {...this.#users[productIndex], ...updateData};
+    this.#users[productIndex] = updatedProduct;
+    await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users, null, 2));
+    console.log(`Product ${productId} updated:`, updatedProduct);
+    return updatedProduct;
+  } catch (error) {
+    console.error(`Error updating product ${productId}:`, error);
+    throw error;
+  }
+}
+//----------------------------------------------------------------------------
+
+
+deleteProduct = async (productId) => {
+  try {
+    await this.#prepararDirectorioBase();
+    const productFinded = await this.getProductById(productId);
+    
+    if (productFinded) {
+      const index = this.#users.findIndex((product) => product.productId === productId);
+      if (index === -1) {
+        console.log(`Producto ${productId} no encontrado`);
+        return;
+      }
+      this.#users.splice(index, 1);
+      console.log(`Producto ${productId} eliminado`);
+      console.log(this.#users);
+      await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users, null, 2));
+    }
+  } catch (error) {
+    console.error(`Error eliminando el producto con id: ${productId}. Detalle del error: ${error}`);
+    throw Error(`Error eliminando el producto con id: ${productId}. Detalle del error: ${error}`);
+  }
+}
+
+
+};
+
+export default ProductManager;
+
+
+/*
 updateProduct = async (productId,updateData) => {
 
   const update = updateData;
@@ -132,32 +182,4 @@ updateProduct = async (productId,updateData) => {
     }
     else console.log("no se ha encontrado el producto");
 };
-
-//----------------------------------------------------------------------------
-
-
-deleteProduct = async (productId) => {
-  try {
-    await this.#prepararDirectorioBase();
-    await this.getProductById(productId);
-    
-    if (this.getProductById(productId)){
-      const userPosition =  this.getProductById(productId).findIndex((u => u.productId === productId));
-      }
-
-      this.#users.splice(index,1);
-      console.log(`'--------------Producto ${productId} Eliminado---------------'`);
-      console.log(this.#users)
-    }
-    
-  catch (error) {
-    throw error;
-  }
-}
-
-
-
-};
-
-
-export default ProductManager;
+*/
