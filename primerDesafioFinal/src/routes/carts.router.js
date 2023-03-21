@@ -42,7 +42,7 @@ export default router;
 
 
 */
-
+/*
 
 import {Router} from "express";
 import ProductManager from "../service/ProductManager.js";
@@ -80,17 +80,8 @@ router.post("/", async (req, res) =>{
     }
 });
 //-------------------------------------------------------------------
-router.delete("/", async (req, res) =>{
-    try {
-        console.log("llamando a eliminar producto:");
-        const user = req.body;
-        await userManager.deleteProduct(user.productId);
-        res.status(201).send({mensaje: "producto eliminado con éxito! Con producto:" + user.productId});
-    } catch (error) {
-        console.log("Error guardando producto. Error: " + error); 
-        res.status(500).send({error: "Error guardando producto", mensagge: error});
-    }
-});
+
 
 
 export default router;
+*/

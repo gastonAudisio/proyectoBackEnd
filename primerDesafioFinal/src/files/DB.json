@@ -118,5 +118,14 @@
     "price": 2900,
     "thumbnail": "src/libros/heidi.svg",
     "stock": 2
+  },
+  {
+    "productId": 1679436755017,
+    "code": 15,
+    "title": "reemplazo",
+    "description": "lala",
+    "price": 5600,
+    "thumbnail": "src/libros/franken.svg",
+    "stock": 2
   }
 ]
