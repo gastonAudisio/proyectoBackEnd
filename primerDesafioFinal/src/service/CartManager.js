@@ -109,7 +109,7 @@ class CartManager {
     
       const productIndex = cart.products.findIndex(p => p.id === productId);
       if (productIndex >= 0) {
-        cart.products.quantity++;
+        cart.products[productIndex].quantity++;
         //cart.products[productIndex].quantity += 1;
       } else {
         let newP = {
