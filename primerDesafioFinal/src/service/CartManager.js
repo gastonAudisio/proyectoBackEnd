@@ -132,6 +132,7 @@ class CartManager {
       const productIndex = cart.products.findIndex(p => p.id === productId);
       if (productIndex >= 0) {
         cart.products[productIndex].quantity++;
+        
       } else {
         let newP = {
           id: productId,
@@ -139,7 +140,7 @@ class CartManager {
         };
         cart.products.push(newP);
       }
-    
+      await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users,null, 2));
       return cart;
     }
 
