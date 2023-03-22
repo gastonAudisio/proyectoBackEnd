@@ -101,28 +101,47 @@ class CartManager {
 
 //--------------------------------------------------------------------------
 
+    // async addProductToCart(cartId, productId) {
+    //   const cart = await this.getCartById(cartId);
+    //   if (!cart) {
+    //     throw new Error(`Cart ${cartId} Not Found!`);
+    //   }
+    
+    //   const productIndex = cart.products.findIndex(p => p.id === productId.id);
+    //   if (productIndex >= 0) {
+    //     cart.products[productIndex].quantity++;
+    //     //cart.products[productIndex].quantity += 1;
+    //   } else {
+    //     let newP = {
+    //       id: productId.id,
+    //       quantity: 1,
+    //     };
+    //     cart.products.push(newP);
+        
+    //   }
+    
+    //   return cart;
+    // }
+  
+
     async addProductToCart(cartId, productId) {
       const cart = await this.getCartById(cartId);
       if (!cart) {
         throw new Error(`Cart ${cartId} Not Found!`);
       }
-    
       const productIndex = cart.products.findIndex(p => p.id === productId);
       if (productIndex >= 0) {
         cart.products[productIndex].quantity++;
-        //cart.products[productIndex].quantity += 1;
       } else {
         let newP = {
           id: productId,
           quantity: 1,
         };
         cart.products.push(newP);
-        
       }
     
       return cart;
     }
-  
 
 
 

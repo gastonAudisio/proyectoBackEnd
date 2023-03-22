@@ -36,7 +36,7 @@ router.post("/:cid/product/:pid", async (req, res) => {
     try {
         const cartId = parseInt(req.params.cid);
         const productId = parseInt(req.params.pid);
-        const cart = await cartManager.getCart(cartId);
+        const cart = await cartManager.getCartById(cartId);
         if (!cart) {
             res.status(404).json({ message: "Cart not found" });
         } else {
