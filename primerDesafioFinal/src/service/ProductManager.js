@@ -9,7 +9,7 @@ class Product{
       this.thumbnail = thumbnail;
       this.stock = stock;
       this.category = category;
-      this.status = status
+      
   }
 };
 
@@ -42,8 +42,8 @@ class ProductManager {
 
 //------------------------------------------------------------------------
 
-addProduct = async (code,title,description,price,thumbnail,stock,category,status) => {
-  let usuarioNuevo = new Product(code,title,description,price,thumbnail,stock,category,status);
+addProduct = async (code,title,description,price,thumbnail,stock,category) => {
+  let usuarioNuevo = new Product(code,title,description,price,thumbnail,stock,category);
   const addNewProduct = {
     productId: Date.now(),
     ...usuarioNuevo,  

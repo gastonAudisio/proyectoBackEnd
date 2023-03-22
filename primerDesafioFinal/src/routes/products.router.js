@@ -26,7 +26,7 @@ router.post("/", async (req, res) =>{
     try {
         console.log("llamando a Crear producto:");
         const user = req.body;
-        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock ,user.category, user.status );
+        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock ,user.category );
         res.status(201).send({mensaje: "producto creado con éxito!:" + user.title});
     } catch (error) {
         console.log("Error guardando producto. Error: " + error); 

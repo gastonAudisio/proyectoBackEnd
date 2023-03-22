@@ -144,5 +144,16 @@
     "stock": 2,
     "category": "Drama",
     "status": true
+  },
+  {
+    "productId": 1679523000311,
+    "code": "5",
+    "title": "Heidi",
+    "description": "Drama",
+    "price": 2900,
+    "thumbnail": "src/libros/heidi.svg",
+    "stock": 2,
+    "category": "Drama",
+    "status": true
   }
 ]
