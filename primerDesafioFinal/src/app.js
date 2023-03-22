@@ -1,6 +1,6 @@
 import express from 'express';
 import productRouter from "./routes/products.router.js"
-//import cartsRouter from "./routes/carts.router.js"
+import cartsRouter from "./routes/carts.router.js"
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}));
 
 // //Routers
 app.use("/api/products", productRouter);
-//app.use("/api/carts", cartsRouter);
+app.use("/api/carts", cartsRouter);
 
 app.get("/", (req, res)=>{
    res.send("Hola mundo!");

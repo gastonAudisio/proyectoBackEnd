@@ -55,7 +55,7 @@ router.put("/:pid", async (req, res) => {
         thumbnail:"src/libros/franken.svg",
         stock:2,
 });
-    //res.send(productById)
+    
     res.status(201).send({mensaje: "producto modificado con éxito!"});
 });
 
