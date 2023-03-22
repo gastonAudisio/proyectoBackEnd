@@ -34,7 +34,7 @@ class CartManager {
       await this.#fileSystem.promises.writeFile(this.#usersFilePath, "[]");
     }
   }
-
+//--------------------------------------------------------------------------
   addCart = async () => {
     const newCart = new Cart();
     const addNewCart = {
@@ -60,7 +60,7 @@ class CartManager {
       throw Error(`Error creating new cart: ${JSON.stringify(addNewCart)}, error detail: ${error}`);
     }
   }
-
+//--------------------------------------------------------------------------
   getCart = async () =>{
     try {
         //Validamos que exista ya el archivo con usuarios sino se crea vacío para ingresar nuevos:
@@ -80,7 +80,7 @@ class CartManager {
         detalle del error: ${error}`);
     }
   }
-
+//--------------------------------------------------------------------------
   getCartById = async (cartId) => {
     try {
       await this.#prepararDirectorioBase();
@@ -97,6 +97,24 @@ class CartManager {
       throw error;
     }
   
+    }
+
+//--------------------------------------------------------------------------
+
+    async addProductToCart(cartId, productId) {
+      const cart = await this.getCartById(cartId);
+      if (!cart) {
+        throw new Error(`Cart ${cartId} Not Found!`);
+      }
+    
+      const productIndex = cart.products.findIndex(p => p.id === productId);
+      if (productIndex >= 0) {
+        cart.products[productIndex].quantity += productId.quantity;
+      } else {
+        cart.products.push(productId);
+      }
+    
+      return cart;
     }
   
 };
