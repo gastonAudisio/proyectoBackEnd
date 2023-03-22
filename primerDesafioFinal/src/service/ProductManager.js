@@ -1,13 +1,15 @@
 import fs from 'node:fs';
 
 class Product{
-  constructor(code, title, description,price,thumbnail,stock ){
+  constructor(code,title,description,price,thumbnail,stock,category,status){
       this.code = code;
       this.title = title;
       this.description = description;
       this.price = price;
       this.thumbnail = thumbnail;
       this.stock = stock;
+      this.category = category;
+      this.status = status
   }
 };
 
@@ -40,8 +42,8 @@ class ProductManager {
 
 //------------------------------------------------------------------------
 
-addProduct = async (code, title, description,price,thumbnail,stock) => {
-  let usuarioNuevo = new Product(code, title, description,price,thumbnail,stock);
+addProduct = async (code,title,description,price,thumbnail,stock,category,status) => {
+  let usuarioNuevo = new Product(code,title,description,price,thumbnail,stock,category,status);
   const addNewProduct = {
     productId: Date.now(),
     ...usuarioNuevo,  

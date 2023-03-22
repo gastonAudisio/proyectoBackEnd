@@ -26,8 +26,8 @@ router.post("/", async (req, res) =>{
     try {
         console.log("llamando a Crear producto:");
         const user = req.body;
-        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock );
-        res.status(201).send({mensaje: "producto creado con éxito! Con Id:" + user.productId});
+        await userManager.addProduct(user.code, user.title, user.description, user.price, user.thumbnail, user.stock ,user.category, user.status );
+        res.status(201).send({mensaje: "producto creado con éxito!:" + user.title});
     } catch (error) {
         console.log("Error guardando producto. Error: " + error); 
         res.status(500).send({error: "Error guardando producto", mensagge: error});
@@ -54,6 +54,8 @@ router.put("/:pid", async (req, res) => {
         price:5600,
         thumbnail:"src/libros/franken.svg",
         stock:2,
+        category:"Accion",
+        status:true,
 });
     
     res.status(201).send({mensaje: "producto modificado con éxito!"});
