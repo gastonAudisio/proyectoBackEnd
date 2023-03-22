@@ -55,6 +55,7 @@ router.put("/:pid", async (req, res) => {
         thumbnail:"src/libros/franken.svg",
         stock:2,
         category:"Accion",
+        status:true
         
 });
     
