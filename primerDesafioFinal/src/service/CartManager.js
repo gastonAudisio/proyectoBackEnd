@@ -3,9 +3,9 @@
 import fs from 'node:fs';
 
 class Cart {
-  constructor(cartId) {
-    this.cartId = cartId;
-    products = [];
+  constructor() {
+    
+    this.products = [];
   }
 }
 
@@ -35,8 +35,8 @@ class CartManager {
     }
   }
 
-  addCart = async (cartId) => {
-    const newCart = new Cart(cartId);
+  addCart = async () => {
+    const newCart = new Cart();
     const addNewCart = {
       ...newCart,
       cartId: Date.now()
