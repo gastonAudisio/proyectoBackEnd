@@ -61,23 +61,23 @@ class CartManager {
     }
   }
 
-  getCart = async () => {
+  getCart = async () =>{
     try {
-      // Validate if the file with users already exists or not, if not, create it to add new ones:
-      await this.#prepararDirectorioBase();
-      // Read the file.
-      let usuariosFile = await this.#fileSystem.promises.readFile(this.#usersFilePath, "utf-8");
-      // Load found users to add the new ones:
-      // Get the JSON String 
-      this.#users = JSON.parse(usuariosFile);
-      console.log("Found carts: ");
-      console.log(this.#users);
-      return this.#users;
+        //Validamos que exista ya el archivo con usuarios sino se crea vacío para ingresar nuevos:
+        await this.#prepararDirectorioBase();
+        //leemos el archivo
+        let usuariosFile = await this.#fileSystem.promises.readFile(this.#usersFilePath, "utf-8");
+        //Cargamos los usuarios encontrados para agregar el nuevo:
+        //Obtenemos el JSON String 
+        this.#users = JSON.parse(usuariosFile);
+        console.log("Productos encontrados: ");
+        console.log(this.#users);
+        return this.#users;
     } catch (error) {
-      console.error(`Error querying users by file, check the file: ${this.#userDirPath}, 
-          error detail: ${error}`);
-      throw Error(`Error querying users by file, check the file: ${this.#userDirPath},
-          error detail: ${error}`);
+        console.error(`Error consultando los usuarios por archivo, valide el archivo: ${this.#userDirPath}, 
+            detalle del error: ${error}`);
+        throw Error(`Error consultando los usuarios por archivo, valide el archivo: ${this.#userDirPath},
+        detalle del error: ${error}`);
     }
   }
 
@@ -85,15 +85,19 @@ class CartManager {
     try {
       await this.#prepararDirectorioBase();
       await this.getCart();
-      const cartFinded = this.#users.find((cart) => cart.cartId === cartId);
+      const cartFinded = this.#users.find(
+        (cart) => cart.cartId === cartId
+      );
+  
       if (!cartFinded) throw new Error(`Cart ${cartId} Not Found!`);
-      console.log("---------getCartById----------");
-      console.log(cartFinded);
-      return cartFinded;
+        console.log("---------getProductById----------");
+        console.log(cartFinded);
+        return(cartFinded);
     } catch (error) {
       throw error;
     }
-  }
+  
+    }
   
 };
 
