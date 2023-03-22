@@ -1,32 +1,5 @@
 [
   {
-    "productId": 1679520099859,
-    "code": "3",
-    "title": "Billy Summers",
-    "description": "asesino a sueldo",
-    "price": 7800,
-    "thumbnail": "src/libros/billy.jpg",
-    "stock": 5
-  },
-  {
-    "productId": 1679520161654,
-    "code": "4",
-    "title": "1984",
-    "description": "El famoso Gran Hermano",
-    "price": 4400,
-    "thumbnail": "src/libros/1984.svg",
-    "stock": 6
-  },
-  {
-    "productId": 1679520201834,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2
-  },
-  {
     "productId": 1679520487162,
     "code": "6",
     "title": "Orgullo y Prejuicio",
@@ -49,16 +22,6 @@
     "status": true
   },
   {
-    "productId": 1679522501315,
-    "code": "4",
-    "title": "1984",
-    "description": "El famoso Gran Hermano",
-    "price": 4400,
-    "thumbnail": "src/libros/1984.svg",
-    "stock": 6,
-    "category": "Distopia"
-  },
-  {
     "productId": 1679522677597,
     "code": "4",
     "title": "1984",
@@ -70,83 +33,18 @@
     "status": true
   },
   {
-    "productId": 1679522736016,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
+    "productId": 1679523610673,
+    "code": "3",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Accion",
     "status": true
   },
   {
-    "productId": 1679522759134,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
-    "status": true
-  },
-  {
-    "productId": 1679522804300,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
-    "status": true
-  },
-  {
-    "productId": 1679522828317,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
-    "status": true
-  },
-  {
-    "productId": 1679522843406,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
-    "status": true
-  },
-  {
-    "productId": 1679522902860,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama"
-  },
-  {
-    "productId": 1679522920674,
-    "code": "5",
-    "title": "Heidi",
-    "description": "Drama",
-    "price": 2900,
-    "thumbnail": "src/libros/heidi.svg",
-    "stock": 2,
-    "category": "Drama",
-    "status": true
-  },
-  {
-    "productId": 1679523000311,
+    "productId": 1679523678382,
     "code": "5",
     "title": "Heidi",
     "description": "Drama",
