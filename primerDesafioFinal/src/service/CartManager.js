@@ -111,12 +111,21 @@ class CartManager {
       if (productIndex >= 0) {
         cart.products[productIndex].quantity += productId.quantity;
       } else {
-        cart.products.push(productId);
+        let newP = {
+          id: productId,
+          quantity: 1,
+        };
+        cart.products.push(newP);
+        
       }
     
       return cart;
     }
   
+
+
+
+
 };
 
 export default CartManager;
