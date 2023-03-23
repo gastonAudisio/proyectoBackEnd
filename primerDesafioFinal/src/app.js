@@ -43,7 +43,7 @@ const httpServer = app.listen(SERVER_PORT, () => {
 
 
 // Declaramos el router
-app.use('/', viewRouter)
+app.use('/views', viewRouter)
 
 
 // const socketServer = new Server
