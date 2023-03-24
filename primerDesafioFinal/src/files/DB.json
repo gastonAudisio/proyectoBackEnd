@@ -55,14 +55,36 @@
     "status": true
   },
   {
-    "productId": 1679523756534,
-    "code": "111",
-    "title": "reemplazoooooooo",
-    "description": "lala",
-    "price": 5600,
-    "thumbnail": "src/libros/franken.svg",
-    "stock": 2,
-    "category": "Accion",
+    "productId": 1679672160077,
+    "code": "55gggg5",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
+  },
+  {
+    "productId": 1679672858761,
+    "code": "NUEVO",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
+  },
+  {
+    "productId": 1679672887968,
+    "code": "ffffffff",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
     "status": true
   }
 ]

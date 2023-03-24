@@ -54,33 +54,9 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
-        // escuchamos al cliente
-        socket.on('mensaje', data=>{
-            console.log(data);
-        })
+
     
-        socket.emit('msg_02', 'Mesaje enviado desde el back!!')
-    
-        socket.broadcast.emit("evento_para_todos_excepto_socket_actual", "Este evento es para todos los sockets, menos el socket desde que se emitió el mensaje!");
-        
-        socketServer.emit("evento_para_todos", "Evento para todos los Sockets!");
-    
-    //Ejercicio 1
-    socket.on("message1",data=>{
-        console.log("Recibiendo texto:");
-        console.log(data);
-        socketServer.emit('log',data);
-    });
-    
-    
-     //Ejercicio 2
-    const logs = [];
-     //Message2 se utiliza para la parte de almacenar y devolver los logs completos.
-    socket.on("message2",data=>{
-        logs.push({socketid:socket.id,message:data})
-        socketServer.emit('log',{logs});
-    });
-    
+   
     
     })
 
