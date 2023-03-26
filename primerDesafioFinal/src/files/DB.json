@@ -86,5 +86,49 @@
     "stock": 5,
     "category": "Drama",
     "status": true
+  },
+  {
+    "productId": 1679842293595,
+    "code": "DD",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
+  },
+  {
+    "productId": 1679842368515,
+    "code": "DD",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
+  },
+  {
+    "productId": 1679842375292,
+    "code": "Df",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
+  },
+  {
+    "productId": 1679843280163,
+    "code": "cf",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
   }
 ]

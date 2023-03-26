@@ -5,6 +5,7 @@ import handlebars from 'express-handlebars';
 import __dirname from './utils.js';
 import viewRouter from './routes/views.router.js'
 
+
 import {Server} from 'socket.io'
 
 const app = express();
@@ -50,13 +51,14 @@ app.use('/views', viewRouter)
 const socketServer = new Server(httpServer);
 
 
+
 // Abrimos el canal de comunicacion
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
 
+});
     
-   
     
-    })
+
 
