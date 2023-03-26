@@ -7,11 +7,10 @@ import ProductManager from "../service/ProductManager.js";
 const userManager = new ProductManager();
 
 
-router.get("/productList", async (req, res) => {
-    res.render("productList");
-    
-    
-});
+router.get('/productList', async (req, res) => {
+    const productList = await userManager.getProduct();
+    res.render('productList', { products: productList });
+  });
 
 
 
