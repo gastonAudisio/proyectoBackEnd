@@ -56,7 +56,9 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
-
+    socket.on('mensaje', data=>{
+        console.log(data);
+    })
 });
     
     
