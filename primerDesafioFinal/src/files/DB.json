@@ -130,5 +130,16 @@
     "stock": 5,
     "category": "Drama",
     "status": true
+  },
+  {
+    "productId": 1679857932352,
+    "code": "VVVVVV",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
   }
 ]

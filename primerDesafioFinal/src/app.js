@@ -56,9 +56,13 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
-    socket.on('mensaje', data=>{
-        console.log(data);
-    })
+    const logs = [];
+    //Message2 se utiliza para la parte de almacenar y devolver los logs completos.
+    socket.on("message2",data=>{
+        logs.push({socketid:socket.id,message:data})
+        socketServer.emit('log',{logs});
+    });
+   
 });
     
     

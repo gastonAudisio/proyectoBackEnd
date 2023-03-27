@@ -15,10 +15,12 @@ router.get('/productList', async (req, res) => {
 
 
   router.get("/realTimeProduct", async (req, res) => {
-    res.render("realTimeProduct");
+    const productList = await userManager.getProduct();
+    res.render('realTimeProduct', { products: productList });
     
-    
+
 });
-
-
+router.get("/message", (req, res)=>{
+    res.render("messages");
+});
 export default router;
