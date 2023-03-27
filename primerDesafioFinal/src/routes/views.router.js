@@ -20,7 +20,4 @@ router.get('/productList', async (req, res) => {
     
 
 });
-router.get("/message", (req, res)=>{
-    res.render("messages");
-});
 export default router;

@@ -62,9 +62,17 @@ socketServer.on('connection', socket=>{
         logs.push({socketid:socket.id,message:data})
         socketServer.emit('log',{logs});
     });
+
+
+
+   
+
+
    
 });
     
     
+
+
 
 
