@@ -143,114 +143,19 @@
     "status": true
   },
   {
-    "productId": 1680060929977,
-    "code": {
-      "code": "asd",
-      "title": "",
-      "description": "",
-      "price": "asdf",
-      "thumbnail": "",
-      "stock": "",
-      "category": "adf",
-      "status": "adsf"
-    }
+    "productId": 1680129308337,
+    "code": "AAA",
+    "title": "Billy Summers",
+    "description": "asesino a sueldo",
+    "price": 7800,
+    "thumbnail": "src/libros/billy.jpg",
+    "stock": 5,
+    "category": "Drama",
+    "status": true
   },
   {
-    "productId": 1680061008535,
-    "code": {
-      "code": "asdf",
-      "title": "",
-      "description": "",
-      "price": "",
-      "thumbnail": "",
-      "stock": "",
-      "category": "",
-      "status": "asdf"
-    }
-  },
-  {
-    "productId": 1680120032691,
-    "code": {
-      "code": "",
-      "title": "d",
-      "description": "",
-      "price": "",
-      "thumbnail": "",
-      "stock": "d",
-      "category": "d",
-      "status": ""
-    }
-  },
-  {
-    "productId": 1680120513876,
-    "code": {
-      "code": "asd",
-      "title": "asd",
-      "description": "as",
-      "price": "ds",
-      "thumbnail": "df",
-      "stock": "dsf",
-      "category": "asdf",
-      "status": "asdf"
-    }
-  },
-  {
-    "productId": 1680120965806,
-    "code": {
-      "code": "d",
-      "title": "d",
-      "description": "d",
-      "price": "d",
-      "thumbnail": "",
-      "stock": "",
-      "category": "",
-      "status": ""
-    }
-  },
-  {
-    "productId": 1680121613003,
-    "code": "asdf",
-    "title": "asd",
-    "description": "d",
-    "price": "dasfd",
-    "thumbnail": "asdfasdf",
-    "stock": "adsfa",
-    "category": "sdfasdf",
-    "status": "asdf"
-  },
-  {
-    "0": "X",
-    "1": "X",
-    "2": "X",
-    "3": "X",
-    "4": "X",
-    "5": "X",
-    "6": "X",
-    "7": "X",
-    "8": "X",
-    "9": "X",
-    "10": "X",
-    "11": "X",
-    "12": "X",
-    "13": "X",
-    "14": "X",
-    "15": "X",
-    "productId": 1680121658638
-  },
-  {
-    "productId": 1680121911736,
-    "code": "e",
-    "title": "ee",
-    "description": "eeee",
-    "price": "eee",
-    "thumbnail": "eeee",
-    "stock": "eee",
-    "category": "eee",
-    "status": "eee"
-  },
-  {
-    "productId": 1680121918773,
-    "code": "XXXXXXXXXXXXXXXX",
+    "productId": 1680129341139,
+    "code": "ZXCVDSDDFFFD",
     "title": "Billy Summers",
     "description": "asesino a sueldo",
     "price": 7800,

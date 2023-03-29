@@ -70,6 +70,7 @@ addProduct = async (code,title,description,price,thumbnail,stock,category,status
       throw Error(`Error creando producto nuevo: ${JSON.stringify(addNewProduct)}, detalle del error: ${error}`);
   }
 }
+//------------------------------------------------------------------------
 
 addProductForm = async (product) => {
   const addNewProduct = {
