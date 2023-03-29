@@ -48,9 +48,9 @@ socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
     socket.on("product", data =>{
-        let producto = data
+        
+        userManager.addProduct(data)
         let productsArray = userManager.getProduct()
-        userManager.addProduct({producto})
         socketServer.emit('log',productsArray);
     })
 
