@@ -46,11 +46,9 @@ const socketServer = new Server(httpServer);
 // Abrimos el canal de comunicacion
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
-  
 
-
-    socket.on("product", data =>{
-    userManager.addProduct(data)
+    socket.on("product", product =>{
+    userManager.addProductForm(product)
     })
 
 });

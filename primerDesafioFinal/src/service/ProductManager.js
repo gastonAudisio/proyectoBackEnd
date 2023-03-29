@@ -71,6 +71,32 @@ addProduct = async (code,title,description,price,thumbnail,stock,category,status
   }
 }
 
+addProductForm = async (product) => {
+  const addNewProduct = {
+    productId: Date.now(),
+    ...product,
+  };
+  console.log("Crear Producto:");
+  console.log(addNewProduct);
+  try {
+      await this.#prepararDirectorioBase();
+      await this.getProduct();
+      
+      if (this.#users.find(u => u.productId === addNewProduct.productId)) {
+          console.warn("El producto ya existe, revise los datos nuevamente.");
+      } else {
+          this.#users.push(addNewProduct);
+          console.log("Lista actualizada de Productos: ");
+          console.log(this.#users);
+          //Se sobreescribe el archivos de usuarios para persistencia.
+          await this.#fileSystem.promises.writeFile(this.#usersFilePath, JSON.stringify(this.#users,null, 2));
+      }
+  } catch (error) {
+      console.error(`Error creando producto nuevo: ${JSON.stringify(addNewProduct)}, detalle del error: ${error}`);
+      throw Error(`Error creando producto nuevo: ${JSON.stringify(addNewProduct)}, detalle del error: ${error}`);
+  }
+}
+
 //---------------------------------------------------------------------------
 
 

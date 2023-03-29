@@ -14,7 +14,7 @@ function dataProduct(){
   const inputCategoria = document.getElementById('categoria').value;
   const inputStatus = document.getElementById('status').value;
 
-   products = {
+  products = {
       code: inputCodigo,
       title: inputTitulo,
       description: inputDescripcion,
