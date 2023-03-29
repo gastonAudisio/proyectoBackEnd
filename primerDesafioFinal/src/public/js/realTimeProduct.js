@@ -1,41 +1,40 @@
 const socket = io();
+const btnCrearProducto = document.getElementById("btnCrearProducto");
 
-socket.emit("message", "productos en tiempo real!");
+let products
 
+function dataProduct(){
 
-//const input = document.getElementById('textoEntrada');
-const log = document.getElementById('log');
+  const inputCodigo = document.getElementById('codigo').value;
+  const inputTitulo = document.getElementById('titulo').value;
+  const inputDescripcion = document.getElementById('descripcion').value;
+  const inputPrecio = document.getElementById('precio').value;
+  const inputThumbnail = document.getElementById('thumbnail').value;
+  const inputStock = document.getElementById('stock').value;
+  const inputCategoria = document.getElementById('categoria').value;
+  const inputStatus = document.getElementById('status').value;
 
-const btnCrearProducto = document.getElementById('btnCrearProducto');
-const inputCodigo = document.getElementById('codigo');
-const inputTitulo = document.getElementById('titulo');
-const inputDescripcion = document.getElementById('descripcion');
-const inputPrecio = document.getElementById('precio');
-const inputThumbnail = document.getElementById('thumbnail');
-const inputStock = document.getElementById('stock');
-const inputCategoria = document.getElementById('categoria');
-const inputStatus = document.getElementById('status');
-
-btnCrearProducto.addEventListener('click', () => {
-  const nuevoProducto = {
-    codigo: inputCodigo.value,
-    titulo: inputTitulo.value,
-    descripcion: inputDescripcion.value,
-    precio: inputPrecio.value,
-    thumbnail: inputThumbnail.value,
-    stock: inputStock.value,
-    categoria: inputCategoria.value,
-    status: inputStatus.value,
+ products = {
+    code: inputCodigo,
+    title: inputTitulo,
+    description: inputDescripcion,
+    price: inputPrecio,
+    thumbnail:inputThumbnail,
+    stock: inputStock,
+    category: inputCategoria,
+    status: inputStatus
   };
-  socket.emit('message2', nuevoProducto);
+
+
+
+  return products ;
+}
+
+btnCrearProducto.addEventListener("click", (evt) => {
+  const productData = dataProduct();
+  socket.emit("product",productData);
+  
+  console.log(productData);
+
+
 });
-
-
-socket.on('log',data=>{
-    let logs='';
-    data.logs.forEach(log=>{
-        logs += `${log.socketid} dice: ${log.message}<br/>`
-    })
-    log.innerHTML=logs;
-});
-

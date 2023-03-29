@@ -4,17 +4,16 @@ import cartsRouter from "./routes/carts.router.js"
 import handlebars from 'express-handlebars';
 import __dirname from './utils.js';
 import viewRouter from './routes/views.router.js'
-
-
 import {Server} from 'socket.io'
+import ProductManager from './service/ProductManager.js';
+
+
 
 const app = express();
+const userManager = new ProductManager()
 
 
 const SERVER_PORT = 9090;
-// app.listen(SERVER_PORT, () =>{
-//     console.log("Servidor escuchando por el puerto: " + SERVER_PORT);
-// });
 
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
@@ -28,12 +27,10 @@ app.get("/", (req, res)=>{
    res.send("Hola mundo!");
 });
 
-
 //Uso de vista de plantillas
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + "/views");
 app.set('view engine', 'handlebars');
-
 
 //Carpeta public
 app.use(express.static(__dirname+'/public'));
@@ -41,34 +38,22 @@ app.use(express.static(__dirname+'/public'));
 const httpServer = app.listen(SERVER_PORT, () => {
     console.log("Servidor escuchando por el puerto: " + SERVER_PORT);
 });
-
-
 // Declaramos el router
 app.use('/views', viewRouter)
-
-
 // const socketServer = new Server
 const socketServer = new Server(httpServer);
-
-
 
 // Abrimos el canal de comunicacion
 socketServer.on('connection', socket=>{
     console.log('Nuevo cliente conectado!');
     
-    const logs = [];
-    //Message2 se utiliza para la parte de almacenar y devolver los logs completos.
-    socket.on("message2",data=>{
-        logs.push({socketid:socket.id,message:data})
-        socketServer.emit('log',{logs});
-    });
+    socket.on("product", data =>{
+        let producto = data
+        let productsArray = userManager.getProduct()
+        userManager.addProduct({producto})
+        socketServer.emit('log',productsArray);
+    })
 
-
-
-   
-
-
-   
 });
     
     

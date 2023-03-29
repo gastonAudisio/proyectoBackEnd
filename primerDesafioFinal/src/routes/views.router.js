@@ -3,8 +3,7 @@ const router = express.Router()
 import ProductManager from "../service/ProductManager.js";
 
 
-
-const userManager = new ProductManager();
+const userManager = new ProductManager()
 
 
 router.get('/productList', async (req, res) => {
