@@ -1,7 +1,7 @@
 const socket = io();
 const btnCrearProducto = document.getElementById("btnCrearProducto");
 
-let products
+let products 
 
 function dataProduct(){
 
@@ -14,27 +14,23 @@ function dataProduct(){
   const inputCategoria = document.getElementById('categoria').value;
   const inputStatus = document.getElementById('status').value;
 
- products = {
-    code: inputCodigo,
-    title: inputTitulo,
-    description: inputDescripcion,
-    price: inputPrecio,
-    thumbnail:inputThumbnail,
-    stock: inputStock,
-    category: inputCategoria,
-    status: inputStatus
-  };
-
-
-
+   products = {
+      code: inputCodigo,
+      title: inputTitulo,
+      description: inputDescripcion,
+      price: inputPrecio,
+      thumbnail:inputThumbnail,
+      stock: inputStock,
+      category: inputCategoria,
+      status: inputStatus,
+    };
+  
+  
   return products ;
 }
 
 btnCrearProducto.addEventListener("click", (evt) => {
-  const productData = dataProduct();
+  let productData = dataProduct();
   socket.emit("product",productData);
-  
-  console.log(productData);
-
 
 });
