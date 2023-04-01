@@ -14,17 +14,18 @@ function dataProduct(){
   const inputCategoria = document.getElementById('categoria').value;
   const inputStatus = document.getElementById('status').value;
 
-  products = {
+
+  products ={
       code: inputCodigo,
       title: inputTitulo,
       description: inputDescripcion,
       price: inputPrecio,
-      thumbnail:inputThumbnail,
+      thumbnail: inputThumbnail,
       stock: inputStock,
       category: inputCategoria,
-      status: inputStatus,
-    };
-  
+      status: inputStatus
+    }
+    ;
   
   return products ;
 }
@@ -32,5 +33,4 @@ function dataProduct(){
 btnCrearProducto.addEventListener("click", (evt) => {
   let productData = dataProduct();
   socket.emit("product",productData);
-
 });
