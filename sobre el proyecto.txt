@@ -1,0 +1,29 @@
+
+
+
+
+-------------------------------------------------------------------------
+ruta para ver el carts.json de los productos
+
+localhost:9090/api/products
+
+-------------------------------------------------------------------------
+ruta para ver el DB.json de los carritos
+
+localhost:9090/api/carts
+
+
+-------------------------------------------------------------------------
+
+ruta para ver los productos en tiempo real por medio de webSockets 
+con plantilla de handlebars
+
+http://localhost:9090/views/realTimeProduct 
+
+
+
+-------------------------------------------------------------------------
+
+ruta para ver los productos por medio de handlebars
+
+http://localhost:9090/views/productList 
