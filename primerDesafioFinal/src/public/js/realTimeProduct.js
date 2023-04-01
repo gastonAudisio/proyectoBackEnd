@@ -14,19 +14,23 @@ function dataProduct(){
   const inputCategoria = document.getElementById('categoria').value;
   const inputStatus = document.getElementById('status').value;
 
-  if (!(inputCodigo == "" || inputTitulo == "" || inputDescripcion == "" || inputPrecio == "" || inputThumbnail == "" || inputStock == "" || inputCategoria == ""))
+  if (!(inputCodigo == "" || inputTitulo == "" || inputDescripcion == "" || inputThumbnail == "" || inputCategoria == ""))
   {
-    products = {
-          code: inputCodigo,
-          title: inputTitulo,
-          description: inputDescripcion,
-          price: inputPrecio,
-          thumbnail: inputThumbnail,
-          stock: inputStock,
-          category: inputCategoria,
-          status: inputStatus
+    if(isNaN(inputPrecio) || isNaN(inputStock)) {
+      return alert("Los campos Precio y Stock deben ser números");
+    } else {
+      products = {
+            code: inputCodigo,
+            title: inputTitulo,
+            description: inputDescripcion,
+            price: inputPrecio,
+            thumbnail: inputThumbnail,
+            stock: inputStock,
+            category: inputCategoria,
+            status: inputStatus
+      }
+      return products;
     }
-    return products;
   }
   else 
     {
