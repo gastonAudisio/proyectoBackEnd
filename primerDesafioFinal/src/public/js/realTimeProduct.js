@@ -14,23 +14,28 @@ function dataProduct(){
   const inputCategoria = document.getElementById('categoria').value;
   const inputStatus = document.getElementById('status').value;
 
-
-  products ={
-      code: inputCodigo,
-      title: inputTitulo,
-      description: inputDescripcion,
-      price: inputPrecio,
-      thumbnail: inputThumbnail,
-      stock: inputStock,
-      category: inputCategoria,
-      status: inputStatus
+  if (!(inputCodigo == "" || inputTitulo == "" || inputDescripcion == "" || inputPrecio == "" || inputThumbnail == "" || inputStock == "" || inputCategoria == ""))
+  {
+    products = {
+          code: inputCodigo,
+          title: inputTitulo,
+          description: inputDescripcion,
+          price: inputPrecio,
+          thumbnail: inputThumbnail,
+          stock: inputStock,
+          category: inputCategoria,
+          status: inputStatus
     }
-    ;
-  
-  return products ;
+    return products;
+  }
+  else 
+    {
+    return alert("Debe completar todos los campos");
+    }
 }
 
 btnCrearProducto.addEventListener("click", (evt) => {
   let productData = dataProduct();
   socket.emit("product",productData);
 });
+
