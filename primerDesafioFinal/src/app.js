@@ -51,6 +51,9 @@ socketServer.on('connection', socket=>{
     userManager.addProductForm(product)
     })
 
+    socket.on("id", data => {
+    userManager.deleteProduct(data)
+    })
 });
     
     

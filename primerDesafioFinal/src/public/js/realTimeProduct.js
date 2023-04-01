@@ -1,8 +1,12 @@
 const socket = io();
 const btnCrearProducto = document.getElementById("btnCrearProducto");
-
+const deleteButton = document.getElementById("delButton");
 let products 
 
+function getId(){
+  const idToDelete = parseInt(document.getElementById("delId").value)
+  return idToDelete
+}
 function dataProduct(){
 
   const inputCodigo = document.getElementById('codigo').value;
@@ -43,3 +47,7 @@ btnCrearProducto.addEventListener("click", (evt) => {
   socket.emit("product",productData);
 });
 
+deleteButton.addEventListener("click", (evt) =>{
+  let id = getId()
+  socket.emit("id", id)
+})

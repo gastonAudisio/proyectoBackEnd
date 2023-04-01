@@ -59,38 +59,5 @@
   },
   {
     "productId": 1680385433850
-  },
-  {
-    "productId": 1680385441474,
-    "code": "d",
-    "title": "d",
-    "description": "d",
-    "price": "12",
-    "thumbnail": "d",
-    "stock": "1",
-    "category": "d",
-    "status": "d"
-  },
-  {
-    "productId": 1680385525329,
-    "code": "s",
-    "title": "s",
-    "description": "s",
-    "price": "2",
-    "thumbnail": "d",
-    "stock": "2",
-    "category": "d",
-    "status": "d"
-  },
-  {
-    "productId": 1680385540588,
-    "code": "ff",
-    "title": "ff",
-    "description": "ff",
-    "price": "232",
-    "thumbnail": "ff",
-    "stock": "22",
-    "category": "fff",
-    "status": "ff"
   }
 ]
