@@ -7,13 +7,15 @@ import viewRouter from './routes/views.router.js'
 import {Server} from 'socket.io'
 import ProductManager from './service/ProductManager.js';
 
-
+import mongoose from 'mongoose';
+import usersRouter from './routes/users.router.js'
 
 const app = express();
 const userManager = new ProductManager()
 
 
 const SERVER_PORT = 9090;
+
 
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
@@ -22,6 +24,7 @@ app.use(express.urlencoded({extended: true}));
 // //Routers
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/users", usersRouter);
 
 app.get("/", (req, res)=>{
    res.send("Hola mundo!");
@@ -54,6 +57,19 @@ socketServer.on('connection', socket=>{
     socket.on("id", data => {
     userManager.deleteProduct(data)
     })
+
+    // Conectamos la base de datos
+const DB = 'mongodb+srv://admin:audisio1@cluster0.7on3jcb.mongodb.net/ecommerce?retryWrites=true&w=majority'
+const connectMongoDB = async()=>{
+    try {
+        await mongoose.connect(DB)
+        console.log("Conectado con exito a MongoDB usando Mongoose");
+    } catch (error) {
+        console.error("No se pudo conectar a la BD usando Moongose: " + error);
+        process.exit();
+    }
+}
+connectMongoDB()
 });
     
     
