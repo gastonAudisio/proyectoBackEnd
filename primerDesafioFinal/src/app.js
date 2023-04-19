@@ -58,21 +58,21 @@ socketServer.on('connection', socket=>{
     userManager.deleteProduct(data)
     })
 
-    // Conectamos la base de datos
-const DB = 'mongodb+srv://admin:audisio1@cluster0.7on3jcb.mongodb.net/ecommerce?retryWrites=true&w=majority'
-const connectMongoDB = async()=>{
-    try {
-        await mongoose.connect(DB)
-        console.log("Conectado con exito a MongoDB usando Mongoose");
-    } catch (error) {
-        console.error("No se pudo conectar a la BD usando Moongose: " + error);
-        process.exit();
-    }
-}
-connectMongoDB()
 });
     
-    
+
+    // Conectamos la base de datos
+    const DB = 'mongodb+srv://admin:audisio1@cluster0.7on3jcb.mongodb.net/ecommerce?retryWrites=true&w=majority'
+    const connectMongoDB = async()=>{
+        try {
+            await mongoose.connect(DB)
+            console.log("Conectado con exito a MongoDB usando Mongoose");
+        } catch (error) {
+            console.error("No se pudo conectar a la BD usando Moongose: " + error);
+            process.exit();
+        }
+    }
+    connectMongoDB()
 
 
 
