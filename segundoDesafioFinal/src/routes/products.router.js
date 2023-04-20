@@ -85,7 +85,7 @@ import { productModel } from "../models/product.model.js";
 
 const router = Router();
 
-//GET
+//GET products
 router.get("/", async (req, res)=>{
     try {
         let products = await productModel.find()
@@ -97,7 +97,7 @@ router.get("/", async (req, res)=>{
     }
 })
 
-//POST
+//POST products
 router.post('/', async (req, res)=>{
     try {
         let {code, title, description,price,thumbnail,stock,category,status} = req.body;
@@ -110,24 +110,9 @@ router.post('/', async (req, res)=>{
 })
 
 
+
 export default router;
 
-// // PUT
-// router.put('/:id', async (req, res)=>{
-//     try {
-//         let userUpdated = req.body;
-//         let user = await productModel.updateOne({_id: req.params.id}, userUpdated);
-//         res.status(202).send(user);
-//     } catch (error) {
-//         console.error("No se pudo obtener usuarios con moongose: " + error);
-//         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
-//     }
-// })
 
 
 
-// "productId": 1679520487162,
-// "productId": 1679520651635,
-// "productId": 1679522677597,
-// "productId": 1679523610673,
-// "productId": 1679523678382,
