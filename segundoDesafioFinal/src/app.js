@@ -9,6 +9,8 @@ import ProductManager from './service/ProductManager.js';
 
 import mongoose from 'mongoose';
 import usersRouter from './routes/users.router.js'
+import { productModel } from "./models/product.model.js";
+import { cartModel } from "./models/cart.model.js";
 
 const app = express();
 const userManager = new ProductManager()
@@ -59,7 +61,7 @@ socketServer.on('connection', socket=>{
     })
 
 });
-    
+
 
     // Conectamos la base de datos
     const DB = 'mongodb+srv://admin:audisio1@cluster0.7on3jcb.mongodb.net/ecommerce?retryWrites=true&w=majority'
@@ -67,13 +69,50 @@ socketServer.on('connection', socket=>{
         try {
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
+
+
+
+
+    let idProduct ="6440755ebfadf6a346584b8e" ;
+    let idCart = "643f24d000b5705da8b36017";
+    // let newCart = await cartModel.create({})
+
+    // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
+    // console.log(cart)
+
+    // creamos la el curso (el documento)
+    // let newProduct = await productModel.create({
+    //     code: "11",
+    //     title: "11",
+    //     description:"11",
+    //     price: 3444,
+    //     thumbnail:"11",
+    //     stock: 44,
+    //     category: "11",
+    //     status: true,
+
+    // })
+
+    // let producto = await productModel.findOne({_id: newProduct._id});
+    // console.log(producto);
+
+
+    // Creamos la conxion/referencia 
+    let cart = await cartModel.findOne({_id:idCart})
+    console.log(JSON.stringify(cart, null, '\t'))
+
+    cart.products.push({product:idProduct})
+    console.log(JSON.stringify(cart, null, '\t'));
+
+    let result = await cartModel.updateOne({_id:"6438938546c8206ec6c62fe4"}, cart )
+    console.log(result);
+
         } catch (error) {
             console.error("No se pudo conectar a la BD usando Moongose: " + error);
             process.exit();
         }
     }
     connectMongoDB()
-
 
 
 
