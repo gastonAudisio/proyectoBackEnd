@@ -73,24 +73,23 @@ socketServer.on('connection', socket=>{
 
 
 
-    let idProduct ="6440755ebfadf6a346584b8e" ;
-    let idCart = "643f24d000b5705da8b36017";
-    // let newCart = await cartModel.create({})
+    let idProduct ="6443137179ce85d48e926dd2" ;
+    let idCart = "6443132ecaa718c8eddfb594";
 
+    // let newCart = await cartModel.create({})
     // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     // console.log(cart)
 
     // creamos la el curso (el documento)
     // let newProduct = await productModel.create({
-    //     code: "11",
-    //     title: "11",
-    //     description:"11",
+    //     code: "dd",
+    //     title: "dd",
+    //     description:"dd",
     //     price: 3444,
-    //     thumbnail:"11",
+    //     thumbnail:"dd",
     //     stock: 44,
-    //     category: "11",
+    //     category: "dd",
     //     status: true,
-
     // })
 
     // let producto = await productModel.findOne({_id: newProduct._id});
@@ -98,13 +97,14 @@ socketServer.on('connection', socket=>{
 
 
     // Creamos la conxion/referencia 
+
     let cart = await cartModel.findOne({_id:idCart})
     console.log(JSON.stringify(cart, null, '\t'))
 
     cart.products.push({product:idProduct})
     console.log(JSON.stringify(cart, null, '\t'));
 
-    let result = await cartModel.updateOne({_id:"6438938546c8206ec6c62fe4"}, cart )
+    let result = await cartModel.updateOne({_id:idCart}, cart )
     console.log(result);
 
         } catch (error) {
