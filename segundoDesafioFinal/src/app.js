@@ -71,16 +71,15 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
-
-
-
     let idProduct ="6440755ebfadf6a346584b90" ;
-    let idCart = "6445ce0d834b0765f0b7cac6";
+    let idCart = "6446eec1d37f06798ba989f5";
 
     // let newCart = await cartModel.create({})
     // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     // console.log(cart)
-
+    // let newCart = await cartModel.create({});
+    // let cart = await cartModel.findOne({_id: newCart._id}).populate('products');
+    // console.log(cart)
     // creamos la el producto (el documento)
     // let newProduct = await productModel.create({
     //     code: "ff",
@@ -100,7 +99,7 @@ socketServer.on('connection', socket=>{
     // Creamos la conxion/referencia 
 
     let cart = await cartModel.findOne({_id:idCart})
-    //console.log(JSON.stringify(cart, null, '\t'))
+    console.log(JSON.stringify(cart, null, '\t'))
 
     const productIndex = cart.products.findIndex(p => p.product == idProduct);
     if (productIndex >= 0) {

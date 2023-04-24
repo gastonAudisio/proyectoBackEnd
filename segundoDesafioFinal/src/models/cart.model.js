@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const cartCollection = 'carts';
+const collectionName  = 'carts';
 
 const numberTypeSchemaNOnUniqueRequired = {
     type: Number,
@@ -25,4 +25,4 @@ cartSchema.pre('findOne', function() {
     this.populate("products.product");
 });
 
-export const cartModel = mongoose.model(cartCollection, cartSchema);
+export const cartModel = mongoose.model('carts', cartSchema, 'carts');

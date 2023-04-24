@@ -61,10 +61,12 @@ const router = Router();
  // Route to render products template
  router.get('/carts', async (req, res) => {
     try {
-    const carts = await cartModel.find().lean();
+    const carts = await cartModel.find().populate("products.product").lean();
+    //const carts = await cartModel.find().lean();
     console.log(carts);
-    res.render('carts',{carts: carts});
-    // res.render('carts',{carts});
+    // res.render('carts',{carts: carts});
+    // res.render('carts',{carts,products:carts.products});
+    res.render('carts',{carts});
     } catch (error) {
     console.error(`Error fetching products: ${error}`);
     res.status(500).send('Internal server error');
@@ -82,6 +84,17 @@ router.get("/", async (req, res)=>{
         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
     }
 })
+
+// GET cart by id
+router.get('/carts/:id', async (req, res) => {
+    try {
+      const cart = await cartModel.findById(req.params.id).lean();
+      res.send(cart);
+    } catch (error) {
+      console.error(`Error fetching cart: ${error}`);
+      res.status(500).send('Internal server error');
+    }
+  });
 
 //POST 
 router.post('/', async (req, res)=>{

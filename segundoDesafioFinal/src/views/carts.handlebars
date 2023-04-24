@@ -1,17 +1,18 @@
 
 
 <div>
-    <h1>Carts</h1>
+    <h1>Cartssss</h1>
     {{#each carts}}
+    <h2>Cart{{@index}}</h2>
         {{#each this.products}}
-            <li>Codigo: {{this.code}}</li>
-            <li>Titulo: {{this.title}}</li>
-            <li>Descricion: {{this.description}}</li>
-            <li>Precio: {{this.price}}</li>
-            <li>Thumbnail: {{this.thumbnail}}</li>
-            <li>Stock: {{this.stock}}</li>
-            <li>Categoria: {{this.category}}</li>
-            <li>Status: {{this.status}}</li>
+            <li>Codigo: {{this.product.code}}</li>
+            <li>Titulo: {{this.product.title}}</li>
+            <li>Descricion: {{this.product.description}}</li>
+            <li>Precio: {{this.product.price}}</li>
+            <li>Thumbnail: {{this.product.thumbnail}}</li>
+            <li>Stock: {{this.product.stock}}</li>
+            <li>Categoria: {{this.product.category}}</li>
+            <li>Status: {{this.product.status}}</li>
             <br>
         {{/each}}
     {{/each}}
