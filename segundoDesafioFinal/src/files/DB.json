@@ -1,6 +1,5 @@
 [
   {
-    
     "code": "6",
     "title": "Orgullo y Prejuicio",
     "description": "Jane Austen",
@@ -11,7 +10,6 @@
     "status": true
   },
   {
-   
     "code": "2",
     "title": "Frankenstein",
     "description": "El doctor Frankenstein",
@@ -22,7 +20,6 @@
     "status": true
   },
   {
-    
     "code": "4",
     "title": "1984",
     "description": "El famoso Gran Hermano",
@@ -33,7 +30,6 @@
     "status": true
   },
   {
-    
     "code": "3",
     "title": "Billy Summers",
     "description": "asesino a sueldo",
@@ -44,7 +40,6 @@
     "status": true
   },
   {
-   
     "code": "5",
     "title": "Heidi",
     "description": "Drama",
@@ -53,6 +48,16 @@
     "stock": 2,
     "category": "Drama",
     "status": true
+  },
+  {
+    "productId": 1682265988322,
+    "code": "f",
+    "title": "f",
+    "description": "f",
+    "price": "4",
+    "thumbnail": "g",
+    "stock": "3",
+    "category": "r",
+    "status": "r"
   }
 ]
-

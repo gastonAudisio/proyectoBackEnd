@@ -55,9 +55,21 @@
 
 
 import {Router} from "express";
-import { productModel } from "../models/product.model.js";
 import { cartModel } from "../models/cart.model.js";
 const router = Router();
+
+ // Route to render products template
+ router.get('/carts', async (req, res) => {
+    try {
+    const carts = await cartModel.find().lean();
+    console.log(carts);
+    res.render('carts',{carts: carts});
+    // res.render('carts',{carts});
+    } catch (error) {
+    console.error(`Error fetching products: ${error}`);
+    res.status(500).send('Internal server error');
+    }
+});
 
 //GET 
 router.get("/", async (req, res)=>{
@@ -88,3 +100,21 @@ router.post('/', async (req, res)=>{
 export default router;
 
 
+{/* <div>
+    <h1>Cart</h1>
+    {{#each carts}}
+        {{#if this.products}}
+            {{#each this.products}}
+                <div>
+                    <h2> {{this.products.title}} </h2>
+                    <p>Code:{{this.products.code}}</p>
+                    <p>Price:{{this.products.price}} </p>
+                    <p>Description:{{this.products.descripcion}}</p>
+                    <p>Stock{{this.products.stock}}</p>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No hay products</p>
+        {{/if}}
+    {{/each}}
+</div> */}

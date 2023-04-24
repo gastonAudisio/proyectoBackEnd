@@ -78,13 +78,21 @@
 // export default router;
 
 //-------------------------------  MONGO  ---------------------------------------------------
-
-
 import {Router} from "express";
 import { productModel } from "../models/product.model.js";
-
 const router = Router();
 
+    // Route to render products template
+    router.get('/products', async (req, res) => {
+        try {
+        const products = await productModel.find().lean();
+        res.render('products', { products: products });
+        
+        } catch (error) {
+        console.error(`Error fetching products: ${error}`);
+        res.status(500).send('Internal server error');
+        }
+    });
 //GET products
 router.get("/", async (req, res)=>{
     try {
@@ -108,8 +116,6 @@ router.post('/', async (req, res)=>{
         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
     }
 })
-
-
 
 export default router;
 

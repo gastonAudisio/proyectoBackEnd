@@ -37,6 +37,7 @@ app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + "/views");
 app.set('view engine', 'handlebars');
 
+
 //Carpeta public
 app.use(express.static(__dirname+'/public'));
 
@@ -73,22 +74,22 @@ socketServer.on('connection', socket=>{
 
 
 
-    let idProduct ="6443137179ce85d48e926dd2" ;
-    let idCart = "6443132ecaa718c8eddfb594";
+    let idProduct ="6440755ebfadf6a346584b90" ;
+    let idCart = "6445ce0d834b0765f0b7cac6";
 
     // let newCart = await cartModel.create({})
     // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     // console.log(cart)
 
-    // creamos la el curso (el documento)
+    // creamos la el producto (el documento)
     // let newProduct = await productModel.create({
-    //     code: "dd",
-    //     title: "dd",
-    //     description:"dd",
+    //     code: "ff",
+    //     title: "ff",
+    //     description:"ff",
     //     price: 3444,
-    //     thumbnail:"dd",
+    //     thumbnail:"ff",
     //     stock: 44,
-    //     category: "dd",
+    //     category: "ffffffff",
     //     status: true,
     // })
 
@@ -99,10 +100,14 @@ socketServer.on('connection', socket=>{
     // Creamos la conxion/referencia 
 
     let cart = await cartModel.findOne({_id:idCart})
-    console.log(JSON.stringify(cart, null, '\t'))
+    //console.log(JSON.stringify(cart, null, '\t'))
 
-    cart.products.push({product:idProduct})
-    console.log(JSON.stringify(cart, null, '\t'));
+    const productIndex = cart.products.findIndex(p => p.product == idProduct);
+    if (productIndex >= 0) {
+      cart.products[productIndex].quantity++;
+    } else {
+      cart.products.push({ product: idProduct, quantity: 1 });
+    }
 
     let result = await cartModel.updateOne({_id:idCart}, cart )
     console.log(result);
