@@ -71,12 +71,12 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
-    let idProduct ="6440755ebfadf6a346584b90" ;
-    let idCart = "6446eec1d37f06798ba989f5";
+    let idProduct ="6440755ebfadf6a346584b8e" ;
+    let idCart = "644701b704eda7bdac6e5c3a";
 
-    // let newCart = await cartModel.create({})
-    // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
-    // console.log(cart)
+    //let newCart = await cartModel.create({})
+    //let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
+    //console.log(cart)
     // let newCart = await cartModel.create({});
     // let cart = await cartModel.findOne({_id: newCart._id}).populate('products');
     // console.log(cart)
