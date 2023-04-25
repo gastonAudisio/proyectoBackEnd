@@ -71,6 +71,12 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
+
+    let products = await productModel.paginate({category: "Drama"}, {limit: 2, page: 1});
+    console.log(products);
+     //students = await studentsModel.find({gender: "Female"});
+    //console.log(students);
+
     let idProduct ="6440755ebfadf6a346584b8e" ;
     let idCart = "644701b704eda7bdac6e5c3a";
 
@@ -99,7 +105,7 @@ socketServer.on('connection', socket=>{
     // Creamos la conxion/referencia 
 
     let cart = await cartModel.findOne({_id:idCart})
-    console.log(JSON.stringify(cart, null, '\t'))
+    // console.log(JSON.stringify(cart, null, '\t'))
 
     const productIndex = cart.products.findIndex(p => p.product == idProduct);
     if (productIndex >= 0) {
@@ -109,7 +115,7 @@ socketServer.on('connection', socket=>{
     }
 
     let result = await cartModel.updateOne({_id:idCart}, cart )
-    console.log(result);
+    // console.log(result);
 
         } catch (error) {
             console.error("No se pudo conectar a la BD usando Moongose: " + error);

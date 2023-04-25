@@ -80,30 +80,31 @@
 //-------------------------------  MONGO  ---------------------------------------------------
 import {Router} from "express";
 import { productModel } from "../models/product.model.js";
+
 const router = Router();
 
-    // Route to render products template
-    router.get('/products', async (req, res) => {
-        try {
-        const products = await productModel.find().lean();
-        res.render('products', { products: products });
+    // // Route to render products template
+    // router.get('/products', async (req, res) => {
+    //     try {
+    //     const products = await productModel.find().lean();
+    //     res.render('products', { products: products });
         
-        } catch (error) {
-        console.error(`Error fetching products: ${error}`);
-        res.status(500).send('Internal server error');
-        }
-    });
-//GET products
-router.get("/", async (req, res)=>{
-    try {
-        let products = await productModel.find()
-        console.log(products);
-        res.send(products)
-    } catch (error) {
-        console.error("No se pudo obtener usuarios con moongose: " + error);
-        res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
-    }
-})
+    //     } catch (error) {
+    //     console.error(`Error fetching products: ${error}`);
+    //     res.status(500).send('Internal server error');
+    //     }
+    // });
+// //GET products
+// router.get("/", async (req, res)=>{
+//     try {
+//         let products = await productModel.find()
+//         console.log(products);
+//         res.send(products)
+//     } catch (error) {
+//         console.error("No se pudo obtener usuarios con moongose: " + error);
+//         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
+//     }
+// })
 
 //POST products
 router.post('/', async (req, res)=>{
@@ -117,6 +118,29 @@ router.post('/', async (req, res)=>{
     }
 })
 
+// router.get('/',(req,res)=>{
+//     res.render('index',{})
+// })
+
+// router.get('/',(req,res)=>{
+//     res.render('index',{})
+// })
+router.get('/',async (req,res)=>{
+    // let page = parseInt(req.query.page);
+    // let limit = parseInt(req.query.limit);
+    // const query = {};
+    // const sort = {price:1};
+    const options = {page:1,limit:10}
+    // if(!page) page=1;
+    //Lean es crucial para mostrar en Handlebars, ya que evita la "hidratación" del documento de mongoose,
+    //esto hace que a Handlebars llegue el documento como plain object y no como Document.
+    // let result = await productModel.paginate({},options)
+    // result.prevLink = result.hasPrevPage?`http://localhost:9090/products?page=${result.prevPage}`:'';
+    // result.nextLink = result.hasNextPage?`http://localhost:9090/products?page=${result.nextPage}`:'';
+    // res.render('products',{products:result.docs,totalPages:products.totalPages,currentPage:page})
+    const result = await productModel.paginate({}, options);
+    console.log(result);
+})
 export default router;
 
 

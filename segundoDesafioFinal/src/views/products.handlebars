@@ -74,3 +74,38 @@
 <div> 
   <p id="log"></p>
 </div>
+
+{{#if isValid}}
+<div>
+    <ul>
+  {{#each products}}
+    <li>Codigo: {{this.code}}</li>
+    <li>Titulo: {{this.title}}</li>
+    <li>Descricion: {{this.description}}</li>
+    <li>Precio: {{this.price}}</li>
+    <li>Thumbnail: {{this.thumbnail}}</li>
+    <li>Stock: {{this.stock}}</li>
+    <li>Categoria: {{this.category}}</li>
+    <li>Status: {{this.status}}</li>
+    <br>
+  {{/each}}
+</ul>
+</div>
+<div> 
+  <p id="log"></p>
+</div>
+<br/>
+<div>
+    {{#if hasPrevPage}}
+        <a href={{this.prevLink}}><< Anterior</a>
+    {{/if}}
+    &nbsp;
+    {{this.page}}
+    &nbsp;
+     {{#if hasNextPage}}
+        <a href={{this.nextLink}}>Siguiente >></a>
+    {{/if}} 
+</div>
+{{else}}
+<h1>There is no products</h1>
+{{/if}}

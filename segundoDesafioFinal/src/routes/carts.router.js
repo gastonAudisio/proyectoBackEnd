@@ -63,7 +63,7 @@ const router = Router();
     try {
     const carts = await cartModel.find().populate("products.product").lean();
     //const carts = await cartModel.find().lean();
-    console.log(carts);
+    // console.log(carts);
     // res.render('carts',{carts: carts});
     // res.render('carts',{carts,products:carts.products});
     res.render('carts',{carts});
@@ -77,7 +77,7 @@ const router = Router();
 router.get("/", async (req, res)=>{
     try {
         let carts = await cartModel.find()
-        console.log(carts);
+        // console.log(carts);
         res.send(carts)
     } catch (error) {
         console.error("No se pudo obtener usuarios con moongose: " + error);
