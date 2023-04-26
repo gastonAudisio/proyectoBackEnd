@@ -71,21 +71,22 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
-
-    let products = await productModel.paginate({category: "Drama"}, {limit: 2, page: 1});
-    console.log(products);
-     //students = await studentsModel.find({gender: "Female"});
-    //console.log(students);
-
-    let idProduct ="6440755ebfadf6a346584b8e" ;
-    let idCart = "644701b704eda7bdac6e5c3a";
-
+    
+    const prod = await productModel.paginate({limit: 5, page: 1});
+    console.log(prod);
+    
+//---------------------------------------------------------------------------
+    let idProduct ="644870cab74037db1a06a99e" ;
+    let idCart = "64484f5cc0154216d1861ccb";
+//---------------------------------------------------------------------------
     //let newCart = await cartModel.create({})
     //let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     //console.log(cart)
     // let newCart = await cartModel.create({});
     // let cart = await cartModel.findOne({_id: newCart._id}).populate('products');
     // console.log(cart)
+
+//---------------------------------------------------------------------------
     // creamos la el producto (el documento)
     // let newProduct = await productModel.create({
     //     code: "ff",
@@ -97,10 +98,9 @@ socketServer.on('connection', socket=>{
     //     category: "ffffffff",
     //     status: true,
     // })
-
     // let producto = await productModel.findOne({_id: newProduct._id});
     // console.log(producto);
-
+//---------------------------------------------------------------------------
 
     // Creamos la conxion/referencia 
 
@@ -121,8 +121,10 @@ socketServer.on('connection', socket=>{
             console.error("No se pudo conectar a la BD usando Moongose: " + error);
             process.exit();
         }
-    }
-    connectMongoDB()
+//---------------------------------------------------------------------------
+}
+
+connectMongoDB()
 
 
 
