@@ -46,6 +46,7 @@
         <div>
             <button id="btnCrearProducto">
             <h3>Crear Producto</h3>
+            </button>
         </div>
         <div>
             <h3>ID del Producto a Eliminar</h3>
@@ -55,7 +56,9 @@
     </div>
     </form>
 <br>
-
+<div> 
+  <p id="log"></p>
+</div>
 <div>
       {{#each products}}
         <li>Codigo: {{this.code}}</li>
@@ -69,3 +72,6 @@
         <br>
       {{/each}}
 </div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
+

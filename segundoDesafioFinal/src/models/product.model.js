@@ -6,11 +6,12 @@ const productCollection = 'products';
 const stringTypeSchemaUniqueRequired = {
     type: String,
     unique: true,
-    required: true
+    required: true,
 };
 const numberTypeSchemaNOnUniqueRequired = {
     type: Number,
-    required: true
+    required: true,
+    default: 0
 };
 
 const stringTypeSchemaNonUniqueRequired = {
@@ -20,7 +21,8 @@ const stringTypeSchemaNonUniqueRequired = {
 
 const booleanTypeSchemaNonUniqueRequired = {
     type: Boolean,
-    required: true
+    required: true,
+    default: 'active'
 };
 
 

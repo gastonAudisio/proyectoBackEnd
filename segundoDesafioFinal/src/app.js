@@ -51,15 +51,24 @@ const socketServer = new Server(httpServer);
 
 // Abrimos el canal de comunicacion
 socketServer.on('connection', socket=>{
-    console.log('Nuevo cliente conectado!');
+    console.log('conectado a socketServer!');
 
-    socket.on("product", product =>{
-    userManager.addProductForm(product)
-    })
+    // socket.on("product", product =>{
+    // userManager.addProductForm(product)
+    // })
 
-    socket.on("id", data => {
-    userManager.deleteProduct(data)
-    })
+    // socket.on("id", data => {
+    // userManager.deleteProduct(data)
+    // })
+    socket.on("product", async product =>{
+        const newProduct = await productModel.create(product);
+        console.log("Producto creado:", newProduct);
+    });
+
+    socket.on("id", async data => {
+        const deletedProduct = await productModel.deleteOne({_id: data});
+        console.log("Producto eliminado:", deletedProduct);
+    });
 
 });
 
@@ -77,7 +86,7 @@ socketServer.on('connection', socket=>{
                 page: 1 
             };
             const prod = await productModel.paginate({}, options);
-            console.log(prod);
+            // console.log(prod);
     
 //---------------------------------------------------------------------------
     let idProduct ="644870cab74037db1a06a99e" ;
