@@ -44,54 +44,6 @@ function dataProduct() {
   }
 }
 
-// btnCrearProducto.addEventListener("click", (evt) => {
-//   const product = dataProduct();
-//   console.log(product)
-//   if (product) {
-//       productModel.insertOne(product, function (err, res) {
-//       if (err) {
-//         console.log("Error al crear el producto", err);
-//         log.innerHTML = "Error al crear el producto";
-//         return;
-//       }
-//       console.log("Producto creado");
-//       log.innerHTML = "Producto creado";
-//     });
-//   }
-// });
-
-// btnCrearProducto.addEventListener("click", (evt) => {
-//   const product = dataProduct();
-//   console.log(product)
-//   if (product) {
-//     productModel.insertOne(product, function (err, res) {
-//       if (err) {
-//         console.log("Error al crear el producto", err);
-//         log.innerHTML = "Error al crear el producto";
-//         return;
-//       }
-//       console.log("Producto creado");
-//       log.innerHTML = "Producto creado";
-
-//       // Emite el evento 'product' con el objeto 'product' como datos
-//       socket.emit('product', product);
-//     });
-//   }
-// });
-
-// deleteButton.addEventListener("click", (evt) => {
-//   const id = getId();
-//   productModel.deleteOne({ _id: id }, function (err, res) {
-//     if (err) {
-//       console.log("Error al eliminar el producto", err);
-//       log.innerHTML = "Error al eliminar el producto";
-//       return;
-//     }
-//     console.log("Producto eliminado");
-//     log.innerHTML = "Producto eliminado";
-//     socket.emit('product', product);
-//   });
-// });
 
 
 btnCrearProducto.addEventListener("click", (evt) => {
