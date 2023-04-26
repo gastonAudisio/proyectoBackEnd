@@ -41,11 +41,6 @@ router.post('/', async (req, res)=>{
 })
 
 
-
-router.get('/',async (req,res)=>{
-    const result = await productModel.paginate({});
-    console.log(result);
-})
 export default router;
 
 
