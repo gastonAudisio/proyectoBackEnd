@@ -37,7 +37,7 @@ const router = Router();
       if(!page) page=1;
       //Lean es crucial para mostrar en Handlebars, ya que evita la "hidratación" del documento de mongoose,
       //esto hace que a Handlebars llegue el documento como plain object y no como Document.
-      let result = await productModel.paginate({},{limit:2,lean:true})
+      let result = await productModel.paginate({},{page,limit:2,lean:true})
       console.log(result)
       result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
       result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
