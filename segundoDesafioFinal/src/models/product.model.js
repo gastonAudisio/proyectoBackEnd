@@ -39,7 +39,9 @@ const productSchema = new mongoose.Schema({
         type:Array,
         default:[]
     }
-});
+},{timestamps:true});
+
+
 productSchema.plugin(mongoosePaginate);
 export const productModel = mongoose.model(productCollection, productSchema);
 

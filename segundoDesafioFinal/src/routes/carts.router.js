@@ -113,21 +113,3 @@ router.post('/', async (req, res)=>{
 export default router;
 
 
-{/* <div>
-    <h1>Cart</h1>
-    {{#each carts}}
-        {{#if this.products}}
-            {{#each this.products}}
-                <div>
-                    <h2> {{this.products.title}} </h2>
-                    <p>Code:{{this.products.code}}</p>
-                    <p>Price:{{this.products.price}} </p>
-                    <p>Description:{{this.products.descripcion}}</p>
-                    <p>Stock{{this.products.stock}}</p>
-                </div>
-            {{/each}}
-        {{else}}
-            <p>No hay products</p>
-        {{/if}}
-    {{/each}}
-</div> */}

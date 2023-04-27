@@ -12,6 +12,7 @@ import usersRouter from './routes/users.router.js'
 import { productModel } from "./models/product.model.js";
 import { cartModel } from "./models/cart.model.js";
 
+
 const app = express();
 const userManager = new ProductManager()
 
@@ -80,12 +81,14 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
-    
-            const options = {
-                limit: 2, 
-                page: 1 
-            };
-            const prod = await productModel.paginate({}, options);
+            // let products = await productModel.paginate({});
+            // console.log(products);
+            // const options = {
+            //     limit: 2, 
+            //     page: 1 ,
+            //     lean:true
+            // };
+            // const prod = await productModel.paginate({}, options);
             // console.log(prod);
     
 //---------------------------------------------------------------------------

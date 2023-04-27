@@ -1,3 +1,4 @@
+
 <h1>Lista de Productos con mongo</h1>
 
     <form >
@@ -40,7 +41,8 @@
         <div>
         <br>
         Status:
-        <input id="status" type="text" alt="Introduce un mensaje">
+        <input id="status" type="boolean" alt="Introduce un mensaje">
+        <p>Ingresa true o false</p>
         </div>
         <br>
         <div>
@@ -59,8 +61,14 @@
 <div> 
   <p id="log"></p>
 </div>
+
+
+
+
+{{#if isValid}}
 <div>
-      {{#each products}}
+    {{#each docs}}
+     
         <li>Codigo: {{this.code}}</li>
         <li>Titulo: {{this.title}}</li>
         <li>Descricion: {{this.description}}</li>
@@ -70,8 +78,28 @@
         <li>Categoria: {{this.category}}</li>
         <li>Status: {{this.status}}</li>
         <br>
-      {{/each}}
+    
+    {{/each}}
 </div>
+<br/>
+<div>
+    {{#if hasPrevPage}}
+        <a href={{this.prevLink}}><< Anterior</a>
+    {{/if}}
+    &nbsp;
+    {{this.page}}
+    &nbsp;
+     {{#if this.hasNextPage}}
+        <a href={{nextLink}}>Siguiente >></a>
+    {{/if}} 
+</div>
+{{else}}
+<h1>No hay productos</h1>
+{{/if}}
+
+
+
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/products.js"></script>
 
