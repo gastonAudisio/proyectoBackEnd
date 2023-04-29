@@ -86,15 +86,28 @@ router.get("/", async (req, res)=>{
 })
 
 // GET cart by id
+// router.get('/carts/:id', async (req, res) => {
+//     try {
+//       const cart = await cartModel.findById(req.params.id).lean();
+//       res.send(cart);
+    
+//     } catch (error) {
+//       console.error(`Error fetching cart: ${error}`);
+//       res.status(500).send('Internal server error');
+//     }
+//   });
+
 router.get('/carts/:id', async (req, res) => {
     try {
-      const cart = await cartModel.findById(req.params.id).lean();
-      res.send(cart);
+      const cart = await cartModel.findById(req.params.id).populate("products.product").lean(); 
+      res.render('carts', cart); 
     } catch (error) {
       console.error(`Error fetching cart: ${error}`);
       res.status(500).send('Internal server error');
     }
   });
+
+
 
 //POST 
 router.post('/', async (req, res)=>{

@@ -5,33 +5,6 @@ import { productModel } from "../models/product.model.js";
 
 const router = Router();
 
-    // GET RENDER products
-    // router.get('/products', async (req, res) => {
-    //     try {
-    //     const products = await productModel.find().lean();
-    //     res.render('products', { products: products });
-        
-    //     } catch (error) {
-    //     console.error(`Error fetching products: ${error}`);
-    //     res.status(500).send('Internal server error');
-    //     }
-    // });
-    // router.get('/products', async (req, res) => {
-    //     const { page, limit } = req.query;
-    //     try {
-    //       const options = {
-    //         page: parseInt(page, 10) || 1,
-    //         limit: parseInt(limit, 10) || 4,
-    //         lean:true
-    //       };
-    //       const products = await productModel.paginate({}, options);
-    //       console.log(products)
-    //       res.render('products', { products:products.docs });
-    //     } catch (error) {
-    //       console.error(`Error fetching products: ${error}`);
-    //       res.status(500).send('Internal server error');
-    //     }
-    //   });
     router.get('/products',async (req,res)=>{
       let page = parseInt(req.query.page);
       if(!page) page=1;
