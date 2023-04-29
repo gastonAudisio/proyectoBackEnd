@@ -1,5 +1,7 @@
 
 
+
+-----------------SEGUNDA PRE ENTREGA DEL PROYECTO FINAL-----------------
 endpoint para ver todos los productos renderizados en una plantilla handlebars por MongoDB
 
 http://localhost:9090/api/products/products
@@ -10,11 +12,18 @@ endpoint para ver todos los carritos renderizados en una plantilla handlebars po
 http://localhost:9090/api/carts/carts
 
 -------------------------------------------------------------------------
-endpoint para ver un carrito por ID por MongoDB
+endpoint para ver un carrito por ID renderizado en una plantilla handlebars por ID por MongoDB
 
 http://localhost:9090/api/carts/carts/6445b9f1838a6709d062c055 (ID de ejemplo)
 
+
+
+
+
+
+-----------------PRIMERA PRE ENTREGA DEL PROYECTO FINAL-----------------
 -------------------------------------------------------------------------
+
 ruta para ver el carts.json de los productos
 
 localhost:9090/api/products

@@ -81,15 +81,6 @@ socketServer.on('connection', socket=>{
             await mongoose.connect(DB)
             console.log("Conectado con exito a MongoDB usando Mongoose");
 
-            // let products = await productModel.paginate({});
-            // console.log(products);
-            // const options = {
-            //     limit: 2, 
-            //     page: 1 ,
-            //     lean:true
-            // };
-            // const prod = await productModel.paginate({}, options);
-            // console.log(prod);
     
 //---------------------------------------------------------------------------
     let idProduct ="644870cab74037db1a06a99e" ;
