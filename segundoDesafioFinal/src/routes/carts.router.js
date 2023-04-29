@@ -57,7 +57,7 @@
 import {Router} from "express";
 import { cartModel } from "../models/cart.model.js";
 const router = Router();
-
+//------------------------------------------------------------------
  // Route to render products template
  router.get('/carts', async (req, res) => {
     try {
@@ -72,7 +72,19 @@ const router = Router();
     res.status(500).send('Internal server error');
     }
 });
-
+//------------------------------------------------------------------
+router.get('/carts/:id', async (req, res) => {
+    try {
+      const cart = await cartModel.findById(req.params.id).populate("products.product").lean(); 
+      
+      res.render('cartId', { cart }); 
+      console.log(cart);
+    } catch (error) {
+      console.error(`Error fetching cart: ${error}`);
+      res.status(500).send('Internal server error');
+    }
+  });
+//------------------------------------------------------------------
 //GET 
 router.get("/", async (req, res)=>{
     try {
@@ -97,17 +109,7 @@ router.get("/", async (req, res)=>{
 //     }
 //   });
 
-router.get('/carts/:id', async (req, res) => {
-    try {
-      const cart = await cartModel.findById(req.params.id).populate("products.product").lean(); 
-      res.render('carts', cart); 
-    } catch (error) {
-      console.error(`Error fetching cart: ${error}`);
-      res.status(500).send('Internal server error');
-    }
-  });
-
-
+//------------------------------------------------------------------
 
 //POST 
 router.post('/', async (req, res)=>{

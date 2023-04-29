@@ -25,4 +25,4 @@ cartSchema.pre('findOne', function() {
     this.populate("products.product");
 });
 
-export const cartModel = mongoose.model('carts', cartSchema, 'carts');
+export const cartModel = mongoose.model(collectionName, cartSchema, 'carts');
