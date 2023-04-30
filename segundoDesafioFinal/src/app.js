@@ -71,6 +71,24 @@ socketServer.on('connection', socket=>{
         console.log("Producto eliminado:", deletedProduct);
     });
 
+    let currentCartId = null;
+    socket.on("getCartId", async cartId => {
+        try {
+            currentCartId = cartId
+            console.log('carrito numero '+ currentCartId);
+        } catch (error) {
+            console.error("Error al ver carrito:", error);
+            }
+        });
+
+    socket.on("cartIdButton", async productId => {
+        try {
+            const pid = await productModel.findById(productId);
+            console.log(`El _id del producto es: ${pid._id}`);
+        } catch (error) {
+            console.error("Error al ver producto:", error);
+            }
+        });
 });
 
 
@@ -83,18 +101,17 @@ socketServer.on('connection', socket=>{
 
     
 //---------------------------------------------------------------------------
-    let idProduct ="644870cab74037db1a06a99e" ;
-    let idCart = "64484f5cc0154216d1861ccb";
+    let idProduct ="6440755ebfadf6a346584b8f" ;
+    let idCart = "644d8a49f9c276242d8bce45";
 //---------------------------------------------------------------------------
-    //let newCart = await cartModel.create({})
-    //let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
-    //console.log(cart)
-    // let newCart = await cartModel.create({});
-    // let cart = await cartModel.findOne({_id: newCart._id}).populate('products');
+//CREAR UN CART
+    // let newCart = await cartModel.create({})
+    // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     // console.log(cart)
+    
 
 //---------------------------------------------------------------------------
-    // creamos la el producto (el documento)
+    // CREAR UN PRODUCT
     // let newProduct = await productModel.create({
     //     code: "ff",
     //     title: "ff",
@@ -109,20 +126,20 @@ socketServer.on('connection', socket=>{
     // console.log(producto);
 //---------------------------------------------------------------------------
 
-    // Creamos la conxion/referencia 
+// Creamos la conxion/referencia PARA AGREGAR UN idProduct A UN idCart
 
-    let cart = await cartModel.findOne({_id:idCart})
-    // console.log(JSON.stringify(cart, null, '\t'))
+    // let cart = await cartModel.findOne({_id:idCart})
+    // // console.log(JSON.stringify(cart, null, '\t'))
 
-    const productIndex = cart.products.findIndex(p => p.product == idProduct);
-    if (productIndex >= 0) {
-      cart.products[productIndex].quantity++;
-    } else {
-      cart.products.push({ product: idProduct, quantity: 1 });
-    }
-
-    let result = await cartModel.updateOne({_id:idCart}, cart )
-    // console.log(result);
+    // const productIndex = cart.products.findIndex(p => p.product == idProduct);
+    // if (productIndex >= 0) {
+    //   cart.products[productIndex].quantity++;
+    // } else {
+    //   cart.products.push({ product: idProduct, quantity: 1 });
+    // }
+    
+    // let result = await cartModel.updateOne({_id:idCart}, cart )
+    // // console.log(result);
 
         } catch (error) {
             console.error("No se pudo conectar a la BD usando Moongose: " + error);

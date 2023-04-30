@@ -4,6 +4,7 @@
     <form >
     <div>
         <div>
+            <p>Formulario para agregar un nuevo producto a la DB</p>
         <br>
         Codigo:
         <input id="codigo" type="text">
@@ -41,8 +42,7 @@
         <div>
         <br>
         Status:
-        <input id="status" type="boolean" alt="Introduce un mensaje">
-        <p>Ingresa true o false</p>
+        <input id="status" type="boolean" alt="Introduce un mensaje" placeholder="Ingresa true o false">
         </div>
         <br>
         <div>
@@ -51,13 +51,15 @@
             </button>
         </div>
         <div>
-            <h3>ID del Producto a Eliminar</h3>
-            <input type="string" id="delId" alt="Introduce un mensaje"/>
+            <h3>Eliminar Producto</h3>
+            <input type="string" id="delId" placeholder="ID del producto a eliminar"/>
             <button type="submit" id="delButton">Eliminar</button>
         </div>
     </div>
     </form>
 <br>
+    <h2>Listado de Productos</h2>
+
 <div> 
   <p id="log"></p>
 </div>
@@ -77,8 +79,13 @@
         <li>Stock: {{this.stock}}</li>
         <li>Categoria: {{this.category}}</li>
         <li>Status: {{this.status}}</li>
+        <form>
+            <input type="text" id="cartId" placeholder="Ingresa el ID del carrito">
+            <button type="submit" id="cartIdButton" class="cartButton" data-product-id="{{this._id}}">Agregar al carrito</button>
+        </form>
+        
         <br>
-    
+        <br>
     {{/each}}
 </div>
 <br/>
@@ -102,4 +109,3 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/products.js"></script>
-

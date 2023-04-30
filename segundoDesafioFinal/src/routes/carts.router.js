@@ -3,7 +3,7 @@ import {Router} from "express";
 import { cartModel } from "../models/cart.model.js";
 const router = Router();
 //------------------------------------------------------------------
- // Route to render products template
+// CARTS RENDERIZADOS
  router.get('/carts', async (req, res) => {
     try {
     const carts = await cartModel.find().populate("products.product").lean();
@@ -14,6 +14,7 @@ const router = Router();
     }
 });
 //------------------------------------------------------------------
+//CART POR ID RENDERIZADO
 router.get('/carts/:id', async (req, res) => {
     try {
       const cart = await cartModel.findById(req.params.id).populate("products.product").lean(); 
@@ -25,6 +26,20 @@ router.get('/carts/:id', async (req, res) => {
       res.status(500).send('Internal server error');
     }
   });
+
+//------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------
 //------------------------------------------------------------------
 //GET 
 router.get("/", async (req, res)=>{
@@ -37,10 +52,7 @@ router.get("/", async (req, res)=>{
         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
     }
 })
-
-
 //------------------------------------------------------------------
-
 //POST 
 router.post('/', async (req, res)=>{
     try {
@@ -53,8 +65,7 @@ router.post('/', async (req, res)=>{
     }
 })
 
-
-
+//------------------------------------------------------------------
 export default router;
 
 

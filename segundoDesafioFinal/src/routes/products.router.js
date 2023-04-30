@@ -10,7 +10,7 @@ const router = Router();
       if(!page) page=1;
       
       let result = await productModel.paginate({},{page,limit:2,lean:true})
-      console.log(result)
+    //   console.log(result)
       result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
       result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
       result.isValid= !(page<=0||page>result.totalPages)
@@ -38,11 +38,13 @@ router.post('/', async (req, res)=>{
         let {code, title, description,price,thumbnail,stock,category,status} = req.body;
         let product = await productModel.create({code, title, description,price,thumbnail,stock,category,status})
         res.status(201).send(product)
+       
     } catch (error) {
         console.error("No se pudo obtener usuarios con moongose: " + error);
         res.status(500).send({error: "No se pudo obtener usuarios con moongose", message: error});
     }
 })
+
 
 
 
