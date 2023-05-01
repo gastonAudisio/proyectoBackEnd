@@ -1,23 +1,16 @@
 import mongoose from 'mongoose';
 
-const userCollection = 'usuarios';
 
-const stringTypeSchemaUniqueRequired = {
-    type: String,
-    unique: true,
-    required: true
-};
-
-const stringTypeSchemaNonUniqueRequired = {
-    type: String,
-    required: true
-};
-
-
-const userSchema = new mongoose.Schema({
-    first_name: stringTypeSchemaNonUniqueRequired,
-    last_name: stringTypeSchemaNonUniqueRequired,
-    email: stringTypeSchemaUniqueRequired
-});
-
-export const userModel = mongoose.model(userCollection, userSchema);
+const collection = "users";
+const schema = mongoose.Schema({
+    first_name:String,
+    last_name:String,
+    email:{
+        type:String,
+        unique:true
+    },
+    age: Number,
+    password:String
+})
+const userModel = mongoose.model(collection,schema);
+export default userModel;

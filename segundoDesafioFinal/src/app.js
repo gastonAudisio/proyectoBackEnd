@@ -8,10 +8,13 @@ import {Server} from 'socket.io'
 import ProductManager from './service/ProductManager.js';
 
 import mongoose from 'mongoose';
-import usersRouter from './routes/users.router.js'
+
 import { productModel } from "./models/product.model.js";
 import { cartModel } from "./models/cart.model.js";
-
+import usersViewRouter from './routes/users.views.router.js';
+import sessionsRouter from './routes/sessions.router.js'
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 const app = express();
 const userManager = new ProductManager()
@@ -19,34 +22,36 @@ const userManager = new ProductManager()
 
 const SERVER_PORT = 9090;
 
-
+//--------------------------------------------------------
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+//--------------------------------------------------------
 // //Routers
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartsRouter);
-app.use("/api/users", usersRouter);
-
+app.use('/views', viewRouter)
+app.use('/users',usersViewRouter);
+app.use('/api/sessions',sessionsRouter);
+//--------------------------------------------------------
 app.get("/", (req, res)=>{
    res.send("Hola mundo!");
-});
+});//--------------------------------------------------------
 
 //Uso de vista de plantillas
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + "/views");
 app.set('view engine', 'handlebars');
 
-
+//--------------------------------------------------------
 //Carpeta public
 app.use(express.static(__dirname+'/public'));
-
+//--------------------------------------------------------
 const httpServer = app.listen(SERVER_PORT, () => {
     console.log("Servidor escuchando por el puerto: " + SERVER_PORT);
 });
-// Declaramos el router
-app.use('/views', viewRouter)
+
+//--------------------------------------------------------
 // const socketServer = new Server
 const socketServer = new Server(httpServer);
 
@@ -72,7 +77,7 @@ socketServer.on('connection', socket=>{
     });
 
     let currentCartId = null;
-   
+    let currentProductId = null;
     socket.on("getCartId",async  cartId => {
         try {
             currentCartId = cartId
@@ -82,13 +87,15 @@ socketServer.on('connection', socket=>{
             console.error("Error al ver carrito:", error);
             }
         });
-    let currentProductId = null;
+   
     socket.on("cartButton", async productId => {
         
         try {
             currentProductId = productId;
             console.log('currentProductId '+ currentProductId);
             console.log('currentCartId '+ currentCartId);
+            
+
             let cart = await cartModel.findOne({_id:currentCartId}).lean()
             const pid = await productModel.findById({_id:currentProductId}).lean();
             const productIndex = cart.products.findIndex(p => p.product == currentProductId);
@@ -113,6 +120,8 @@ socketServer.on('connection', socket=>{
 
 
 
+
+//--------------------------------------------------------
 
     // Conectamos la base de datos
     const DB = 'mongodb+srv://admin:audisio1@cluster0.7on3jcb.mongodb.net/ecommerce?retryWrites=true&w=majority'
@@ -169,6 +178,19 @@ socketServer.on('connection', socket=>{
         }
 //---------------------------------------------------------------------------
 }
+
+//--------------------------------------------------------
+app.use(session({
+
+    store:MongoStore.create({
+        mongoUrl:DB,
+        mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
+        ttl: 40
+    }),
+    secret:"CoderS3cret",
+    resave: false,
+    saveUninitialized: true
+}))
 
 connectMongoDB()
 
