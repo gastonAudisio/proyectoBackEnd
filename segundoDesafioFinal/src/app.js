@@ -72,24 +72,46 @@ socketServer.on('connection', socket=>{
     });
 
     let currentCartId = null;
-    socket.on("getCartId", async cartId => {
+   
+    socket.on("getCartId",async  cartId => {
         try {
             currentCartId = cartId
-            console.log('carrito numero '+ currentCartId);
+            console.log(currentCartId);
+            
         } catch (error) {
             console.error("Error al ver carrito:", error);
             }
         });
-
-    socket.on("cartIdButton", async productId => {
+    let currentProductId = null;
+    socket.on("cartButton", async productId => {
+        
         try {
-            const pid = await productModel.findById(productId);
+            currentProductId = productId;
+            console.log('currentProductId '+ currentProductId);
+            console.log('currentCartId '+ currentCartId);
+            let cart = await cartModel.findOne({_id:currentCartId}).lean()
+            const pid = await productModel.findById({_id:currentProductId}).lean();
+            const productIndex = cart.products.findIndex(p => p.product == currentProductId);
+                if (productIndex >= 0) {
+                    cart.products[productIndex].quantity++;
+                } else {
+                    cart.products.push({ product: currentProductId, quantity: 1 });
+                }
+            console.log(`El _id del cart es: ${cart._id}`);
             console.log(`El _id del producto es: ${pid._id}`);
+            console.log(pid);
+            let result = await cartModel.updateOne({_id:currentCartId}, cart )
+            console.log(result);
+            
+
+
         } catch (error) {
             console.error("Error al ver producto:", error);
             }
         });
 });
+
+
 
 
     // Conectamos la base de datos
@@ -104,7 +126,7 @@ socketServer.on('connection', socket=>{
     let idProduct ="6440755ebfadf6a346584b8f" ;
     let idCart = "644d8a49f9c276242d8bce45";
 //---------------------------------------------------------------------------
-//CREAR UN CART
+// CREAR UN CART
     // let newCart = await cartModel.create({})
     // let cart = await cartModel.findOne({_id: newCart._id }).populate('products')
     // console.log(cart)

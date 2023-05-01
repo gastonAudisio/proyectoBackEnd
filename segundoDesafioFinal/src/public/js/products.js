@@ -6,24 +6,25 @@ const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
 const log = document.getElementById("log");
 const cartIdButton = document.getElementById("cartIdButton");
-const productById = document.getElementById("cartIdButton");
+// const productById = document.getElementById("cartIdButton");
+// const currentCartId = document.querySelector("#cartId").value;
 
 function getCartId() {
   const cartId = document.getElementById("cartId").value;
-  console.log(cartId);
   return cartId;
 }
 
 
+
 function getProductId() {
   const productId = cartIdButton.dataset.productId;
-  console.log(productId);
   return productId;
 }
 
 
 cartIdButton.addEventListener("click", (evt) => {
   let cartId = getCartId();
+  
   socket.emit("getCartId",cartId);
 });
 
@@ -31,12 +32,27 @@ const cartButtons = document.querySelectorAll('.cartButton');
 cartButtons.forEach(button => {
   button.addEventListener('click', evt => {
     const productId = button.dataset.productId;
-    socket.emit('cartIdButton', productId);
+
+    socket.emit('cartButton', productId,cartId);
   });
 });
 
 
+// if (cartIdButton) {
+//   cartIdButton.addEventListener("click", (evt) => {
+//     let cartId = getCartId();
+//     socket.emit("getCartId",cartId);
+//   });
+// }
 
+// const cartButtons = document.querySelectorAll('.cartButton');
+// cartButtons.forEach(button => {
+//   const productId = button.dataset.productId;
+//   const specificButton = document.querySelector(`#cartIdButton-${productId}`);
+//   specificButton.addEventListener('click', evt => {
+//     socket.emit('cartButton', productId);
+//   });
+// });
 
 
 
