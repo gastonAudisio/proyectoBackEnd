@@ -3,6 +3,7 @@ import userModel from '../models/user.model.js';
 
 const router = Router();
 
+//-----------------------------------------------------------------------------
 router.post("/register", async (req, res)=>{
     const { first_name, last_name, email, age, password} = req.body;
     console.log("Registrando usuario:");
@@ -17,22 +18,64 @@ router.post("/register", async (req, res)=>{
         last_name,
         email,
         age,
-        password //se encriptara despues...
+        password 
     };
     const result = await userModel.create(user);
     res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});
 }); 
 
+//-----------------------------------------------------------------------------
 router.post("/login", async (req, res)=>{
     const {email, password} = req.body;
-    const user = await userModel.findOne({email,password}); //Ya que el password no está hasheado, podemos buscarlo directamente
-    if(!user) return res.status(401).send({status:"error",error:"Incorrect credentials"});
-    req.session.user= {
+
+    // Verificar si el correo electrónico es igual al del administrador
+    if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
+        req.session.admin = true;
+        console.log('es admin');
+    } else {
+        req.session.admin = false;
+        console.log('no es admin');
+    }
+
+    const user = await userModel.findOne({email, password}); 
+
+    if(!user) {
+        return res.status(401).send({status:"error",error:"Incorrect credentials"});
+    }
+        
+    req.session.user = {
         name : `${user.first_name} ${user.last_name}`,
         email: user.email,
         age: user.age
     }
+    console.log(user + ' logueado con exito');
+    
     res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
 });
+
+//-----------------------------------------------------------------------------
+router.get('/logout', (req, res)=>{
+    req.session.destroy(error => {
+        if(error){
+            res.json({error: "Error de logout", msg: 'Error al cerrar session'})
+        }
+        res.clearCookie('connect.sid').send("Sesion cerrada correctamente!!")
+    })
+})
+//-----------------------------------------------------------------------------
+function auth(req, res,next){
+   
+    if(req.session.user.email === 'adminCoder@coder.com' && req.session.admin){
+        return next();
+    }else{
+        return res.status(403).send('Usuario no autorizado para ingresar al recurso')
+    }
+}
+
+router.get('/private', auth,  (req, res)=>{
+    console.log('usuario autorizado');
+    res.render("private", {user: req.session.user})
+})
+//-----------------------------------------------------------------------------
 
 export default router;
