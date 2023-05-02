@@ -32,11 +32,12 @@ router.post("/login", async (req, res)=>{
     if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
         req.session.admin = true;
         console.log('es admin');
+        
     } else {
         req.session.admin = false;
         console.log('no es admin');
+        
     }
-
     const user = await userModel.findOne({email, password}); 
 
     if(!user) {
@@ -48,23 +49,27 @@ router.post("/login", async (req, res)=>{
         email: user.email,
         age: user.age
     }
-    console.log(user + ' logueado con exito');
-    
+    console.log(user.email + ' logueado con exito');
+    console.log(req.session.user);
     res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
 });
 
 //-----------------------------------------------------------------------------
 router.get('/logout', (req, res)=>{
-    req.session.destroy(error => {
+    if (req.session && req.session.user) {
+        console.log(`${req.session.user.email}  'deslogueado con mucho exito'`);
+     }
+     req.session.destroy(error => {
         if(error){
             res.json({error: "Error de logout", msg: 'Error al cerrar session'})
         }
+        
+        console.log('deslogueado con exito');
         res.clearCookie('connect.sid').send("Sesion cerrada correctamente!!")
     })
 })
 //-----------------------------------------------------------------------------
 function auth(req, res,next){
-   
     if(req.session.user.email === 'adminCoder@coder.com' && req.session.admin){
         return next();
     }else{
