@@ -25,34 +25,7 @@ router.post("/register", async (req, res)=>{
 }); 
 
 //-----------------------------------------------------------------------------
-// router.post("/login", async (req, res)=>{
-//     const {email, password} = req.body;
 
-//     // Verificar si el correo electrónico es igual al del administrador
-//     if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
-//         req.session.admin = true;
-//         console.log('es admin');
-        
-//     } else {
-//         req.session.admin = false;
-//         console.log('no es admin');
-        
-//     }
-//     const user = await userModel.findOne({email, password}); 
-
-//     if(!user) {
-//         return res.status(401).send({status:"error",error:"Incorrect credentials"});
-//     }
-        
-//     req.session.user = {
-//         name : `${user.first_name} ${user.last_name}`,
-//         email: user.email,
-//         age: user.age
-//     }
-//     console.log(user.email + ' logueado con exito');
-//     console.log(req.session.user);
-//     res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
-// });
 router.post("/login", async (req, res)=>{
     const {email, password} = req.body;
 

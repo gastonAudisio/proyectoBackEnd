@@ -6,7 +6,7 @@ import { productModel } from "../models/product.model.js";
 const router = Router();
     
     router.get('/products',async (req,res)=>{
-        let user = req.session;
+        let user = req.session.user;
       let page = parseInt(req.query.page);
       if(!page) page=1;
       
