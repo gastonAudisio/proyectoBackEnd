@@ -1,5 +1,27 @@
 
+-----------------IMPLEMENTACION DE LOG IN -----------------------------
 
+endpoint para loguearse
+
+http://localhost:9090/users/login
+
+------------------------------------------------------------------------
+endpoint para registrarse
+
+http://localhost:9090/users/register
+
+------------------------------------------------------------------------
+
+endpoint para ruta privada de email:adminCoder@coder.com y pass:adminCod3r123
+
+http://localhost:9090/api/sessions/private
+
+------------------------------------------------------------------------
+endpoint para ver la cantidad de veces que se inicio Sesion
+
+http://localhost:9090/session
+
+------------------------------------------------------------------------
 
 -----------------SEGUNDA PRE ENTREGA DEL PROYECTO FINAL-----------------
 endpoint para ver todos los productos renderizados en una plantilla handlebars por MongoDB
