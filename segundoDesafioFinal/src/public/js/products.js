@@ -6,37 +6,6 @@ const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
 const log = document.getElementById("log");
 
-const cartIdButton = document.getElementById("cartIdButton");
-const cartByClass = document.querySelectorAll('.cartButton');
-
-
-function getCartId() {
-  const cartId = document.getElementById("cartId").value;
-  return cartId;
-}
-
-
-function getProductId(button) {
-  const productId = button.dataset.productId;
-  return productId;
-}
-
-
-cartIdButton.addEventListener("click", (evt) => {
-  let cartId = getCartId();
-  
-  socket.emit("getCartId",cartId);
-});
-
-
-const cartButtons = document.querySelectorAll('.cartButton');
-cartButtons.forEach(button => {
-  button.addEventListener('click', evt => {
-    const productId = getProductId(button);
-    socket.emit('cartButton', productId);
-  });
-});
-
 
 
 

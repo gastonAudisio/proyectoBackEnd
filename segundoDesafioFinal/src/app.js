@@ -78,46 +78,45 @@ socketServer.on('connection', socket=>{
         console.log("Producto eliminado:", deletedProduct);
     });
 
-    let currentCartId = null;
-    let currentProductId = null;
-    socket.on("getCartId",async  cartId => {
-        try {
-            currentCartId = cartId
-            console.log(currentCartId);
-            
-        } catch (error) {
-            console.error("Error al ver carrito:", error);
-            }
-        });
+
+    
+
+    // let currentCartId = null;
+    // let currentProductId = null;
+    
    
-    socket.on("cartButton", async productId => {
+    // socket.on("cartButton", async (productId,cartId) => {
         
-        try {
-            currentProductId = productId;
-            console.log('currentProductId '+ currentProductId);
-            console.log('currentCartId '+ currentCartId);
+    //     try {
+    //         if (!cartId) {
+    //             throw new Error(" ID de carrito NO válido");
+    //           }
+    //         currentProductId = productId;
+    //         currentCartId = cartId;
+    //         console.log('currentProductId '+ currentProductId);
+    //         console.log('currentCartId '+ currentCartId);
             
 
-            let cart = await cartModel.findOne({_id:currentCartId}).lean()
-            const pid = await productModel.findById({_id:currentProductId}).lean();
-            const productIndex = cart.products.findIndex(p => p.product == currentProductId);
-                if (productIndex >= 0) {
-                    cart.products[productIndex].quantity++;
-                } else {
-                    cart.products.push({ product: currentProductId, quantity: 1 });
-                }
-            console.log(`El _id del cart es: ${cart._id}`);
-            console.log(`El _id del producto es: ${pid._id}`);
-            console.log(pid);
-            let result = await cartModel.updateOne({_id:currentCartId}, cart )
-            console.log(result);
+    //         let cart = await cartModel.findOne({_id:currentCartId}).lean()
+    //         const pid = await productModel.findById({_id:currentProductId}).lean();
+    //         const productIndex = cart.products.findIndex(p => p.product == currentProductId);
+    //             if (productIndex >= 0) {
+    //                 cart.products[productIndex].quantity++;
+    //             } else {
+    //                 cart.products.push({ product: currentProductId, quantity: 1 });
+    //             }
+    //         console.log(`El _id del cart es: ${cart._id}`);
+    //         console.log(`El _id del producto es: ${pid._id}`);
+    //         console.log(pid);
+    //         let result = await cartModel.updateOne({_id:currentCartId}, cart )
+    //         console.log(result);
             
 
 
-        } catch (error) {
-            console.error("Error al ver producto:", error);
-            }
-        });
+    //     } catch (error) {
+    //         console.error("Error al agregar producto al carrito:", error);
+    //         }
+    //     });
 });
 
 
@@ -193,6 +192,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+  
 app.use('/',viewsRouter);
 app.use('/users',usersViewRouter);
 app.use('/api/sessions',sessionsRouter);

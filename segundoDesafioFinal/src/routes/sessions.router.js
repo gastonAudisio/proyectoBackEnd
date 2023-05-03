@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import userModel from '../models/user.model.js';
-
+import { cartModel } from '../models/cart.model.js';
 const router = Router();
 
 //-----------------------------------------------------------------------------
@@ -21,6 +21,7 @@ router.post("/register", async (req, res)=>{
         password 
     };
     const result = await userModel.create(user);
+
     res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});
 }); 
 
@@ -57,6 +58,15 @@ router.post("/login", async (req, res)=>{
             age: user.age,
             rol: "usuario"
         }
+        // Crear carrito para el usuario
+        const cart = {
+            user_id: user._id,
+            products: []
+        };
+        const cartResult = await cartModel.create(cart);
+        console.log('carrito numero ' + cartResult._id +' creado con exito');
+
+
         console.log(user.email + ' logueado con exito');
         console.log(req.session.user);
         res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
