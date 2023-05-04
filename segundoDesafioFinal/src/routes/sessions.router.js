@@ -44,7 +44,7 @@ router.post("/login", async (req, res)=>{
             age: user.age,
             rol: "admin"
         };
-         let uuser = req.session.user;
+         
         console.log(user.email + ' logueado con exito');
         console.log(req.session.user);
         res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
@@ -62,7 +62,7 @@ router.post("/login", async (req, res)=>{
             age: user.age,
             rol: "usuario"
         }
-         let uuser = req.session.user;
+         
         // Crear carrito para el usuario
         const cart = {
             user_id: user._id,
@@ -70,7 +70,7 @@ router.post("/login", async (req, res)=>{
         };
         const cartResult = await cartModel.create(cart);
         console.log('carrito numero ' + cartResult._id +' creado con exito');
-
+        console.log(req.session.user);
         res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
         
     

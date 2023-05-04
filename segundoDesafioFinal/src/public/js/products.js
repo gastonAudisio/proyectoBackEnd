@@ -3,7 +3,7 @@ const socket = io();
 
 const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
-const log = document.getElementById("log");
+
 
 const cartIdButton = document.getElementById("cartIdButton");
 const cartByClass = document.querySelectorAll('.cartButton');

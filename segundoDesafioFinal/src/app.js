@@ -177,7 +177,6 @@ socketServer.on('connection', socket=>{
             console.error("No se pudo conectar a la BD usando Moongose: " + error);
             process.exit();
         }
-//---------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------
