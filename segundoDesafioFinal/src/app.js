@@ -30,8 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 //--------------------------------------------------------
 // //Routers
-app.use("/api/products", productRouter);
-app.use("/api/carts", cartsRouter);
+
 
 
 //--------------------------------------------------------
@@ -196,7 +195,8 @@ app.use(session({
 app.use('/',viewsRouter);
 app.use('/users',usersViewRouter);
 app.use('/api/sessions',sessionsRouter);
-
+app.use("/api/products", productRouter);
+app.use("/api/carts", cartsRouter);
 
 connectMongoDB()
 

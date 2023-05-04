@@ -3,6 +3,9 @@ import {userModel} from '../models/user.model.js';
 import {cartModel} from '../models/cart.model.js';
 const router = Router();
 
+
+
+
 //-----------------------------------------------------------------------------
 router.post("/register", async (req, res)=>{
     const { first_name, last_name, email, age, password} = req.body;
@@ -23,6 +26,7 @@ router.post("/register", async (req, res)=>{
     const result = await userModel.create(user)
     res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});
 }); 
+//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 
@@ -40,7 +44,7 @@ router.post("/login", async (req, res)=>{
             age: user.age,
             rol: "admin"
         };
-        // let uuser = req.session.user;
+         let uuser = req.session.user;
         console.log(user.email + ' logueado con exito');
         console.log(req.session.user);
         res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
@@ -58,7 +62,7 @@ router.post("/login", async (req, res)=>{
             age: user.age,
             rol: "usuario"
         }
-        // let uuser = req.session.user;
+         let uuser = req.session.user;
         // Crear carrito para el usuario
         const cart = {
             user_id: user._id,
@@ -67,9 +71,6 @@ router.post("/login", async (req, res)=>{
         const cartResult = await cartModel.create(cart);
         console.log('carrito numero ' + cartResult._id +' creado con exito');
 
-
-        console.log(user.email + ' logueado con exito');
-        console.log(req.session.user);
         res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
         
     
@@ -99,10 +100,18 @@ function auth(req, res,next){
     }
 }
 
+
 router.get('/private', auth,  (req, res)=>{
     console.log('usuario autorizado');
     res.render("private", {user: req.session.user})
 })
 //-----------------------------------------------------------------------------
-
+export function checkUser(req, res,next){
+    if (req.session.user) {
+        next();
+      } else {
+        console.log("no se ve la sesion de usuario");
+        res.redirect('/login');
+      }
+}
 export default router;

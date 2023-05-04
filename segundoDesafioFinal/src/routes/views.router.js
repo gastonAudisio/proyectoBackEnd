@@ -1,7 +1,35 @@
 import {Router} from 'express';
+// import cookieParser from 'cookie-parser';
 
 const router = Router();
 
+
+// // habilitamos las cookies a nivel del router
+// // router.use(cookieParser())
+// router.use(cookieParser('HOLACOMO26323'))
+
+// router.get('/', (req, res)=>{
+//     res.render("index", {})
+// })
+
+
+// router.get('/setCookie', (req, res)=>{
+//     res.cookie('CoderCookie', 'Esta es una cookie!!', {maxAge: 90000, signed: true}).send('Cookie')
+// })
+
+
+// router.get('/getCookie', (req, res)=>{
+//     // Cookkie sin firma
+//     // res.send(req.cookies)
+
+//     // Cookkie con firma
+//     res.send(req.signedCookies)
+// })
+
+
+// router.get('/deleteCookie', (req, res)=>{
+//     res.clearCookie('CoderCookie').send('Cookie borrada!')
+// })
 
 
 /*=============================================
