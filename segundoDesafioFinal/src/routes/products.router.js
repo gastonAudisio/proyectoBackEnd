@@ -7,20 +7,20 @@ const router = Router();
     
     router.get('/products',async (req,res)=>{
         
-        
       let page = parseInt(req.query.page);
       if(!page) page=1;
       
       let result = await productModel.paginate({},{page,limit:2,lean:true})
-      console.log(result)
+    //   console.log(result)
       result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
       result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
-   
-      res.render('products', { result });
-      
+      result.isValid= !(page<=0||page>result.totalPages)
+
+      res.render('products', { ...result } );
   })
     
-    
+      
+
 //GET products 
 router.get("/", async (req, res)=>{
     try {

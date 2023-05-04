@@ -12,5 +12,4 @@ const schema = mongoose.Schema({
     age: Number,
     password:String
 })
-const userModel = mongoose.model(collection,schema);
-export default userModel;
+export const userModel = mongoose.model(collection,schema);

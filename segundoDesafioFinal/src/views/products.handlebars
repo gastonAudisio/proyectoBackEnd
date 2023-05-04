@@ -1,8 +1,7 @@
 
 <div>
- 
-    <p>Bienvenido usuario numero !</p>
-  
+    <p>Bienvenido {{user.name}}!</p>
+    
 </div>
 <h1>Lista de Productos con mongo</h1>
 <div>
@@ -86,9 +85,10 @@
         <li>Stock: {{this.stock}}</li>
         <li>Categoria: {{this.category}}</li>
         <li>Status: {{this.status}}</li>
-        
-        <button type="submit"  id="productIdButton"  class="cartButton" data-product-id="{{this._id}}">Agregar al carrito</button>
-        
+        <form>
+            <input type="text" id="cartId" class="inputCartId" placeholder="Ingresa el ID del carrito">
+            <button type="submit"  id="cartIdButton"  class="cartButton" data-product-id="{{this._id}}" >Agregar al carrito</button>
+        </form>
         
         <br>
         <br>

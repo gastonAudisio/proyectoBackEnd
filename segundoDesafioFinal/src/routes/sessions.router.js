@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import userModel from '../models/user.model.js';
-import { cartModel } from '../models/cart.model.js';
+import {userModel} from '../models/user.model.js';
+import {cartModel} from '../models/cart.model.js';
 const router = Router();
 
 //-----------------------------------------------------------------------------
@@ -20,8 +20,7 @@ router.post("/register", async (req, res)=>{
         age,
         password 
     };
-    const result = await userModel.create(user);
-
+    const result = await userModel.create(user)
     res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});
 }); 
 
