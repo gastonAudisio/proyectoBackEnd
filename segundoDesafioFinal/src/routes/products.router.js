@@ -7,6 +7,7 @@ const router = Router();
     
     router.get('/products',async (req,res)=>{
         
+        
       let page = parseInt(req.query.page);
       if(!page) page=1;
       
