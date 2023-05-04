@@ -6,16 +6,16 @@ import { productModel } from "../models/product.model.js";
 const router = Router();
     
     router.get('/products',async (req,res)=>{
-        
+        // uuser = req.session.user;
       let page = parseInt(req.query.page);
       if(!page) page=1;
-      
+    //   let uuser = req.session.user;
       let result = await productModel.paginate({},{page,limit:2,lean:true})
     //   console.log(result)
       result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
       result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
       result.isValid= !(page<=0||page>result.totalPages)
-
+        
       res.render('products', { ...result } );
   })
     
