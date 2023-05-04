@@ -16,16 +16,6 @@ form.addEventListener('submit',e=>{
         if(result.status===200){
             console.log(obj)
             window.location.replace('/api/products/products');
-            fetch('/api/carts', {
-                method: 'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify({ user_id: user._id, products: [] })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
         }
     })
 })
