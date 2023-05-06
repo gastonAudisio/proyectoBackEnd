@@ -5,14 +5,34 @@ const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
 
 
-const cartIdButton = document.getElementById("cartIdButton");
-const cartByClass = document.querySelectorAll('.cartButton');
 
+//-------------------------------------------------------------------------
 
-function getCartId() {
-  const cartId = document.getElementById("cartId").value;
-  return cartId;
-}
+const cartButtons = document.querySelectorAll('.cartButton');
+
+cartButtons.forEach(button => {
+  button.addEventListener('click', async (e) => {
+    const productId = e.target.dataset.productId; // obtiene el ID del producto que se agregará al carrito
+    const cartId = button.dataset.cartId;
+    console.log("boton apretado");
+    try {
+      const response = await fetch(`/api/carts/${cartId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          productId
+        })
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+});
+
 
 
 function getProductId(button) {
@@ -21,20 +41,7 @@ function getProductId(button) {
 }
 
 
-cartIdButton.addEventListener("click", (evt) => {
-  let cartId = getCartId();
-  
-  socket.emit("getCartId",cartId);
-});
 
-
-const cartButtons = document.querySelectorAll('.cartButton');
-cartButtons.forEach(button => {
-  button.addEventListener('click', evt => {
-    const productId = getProductId(button);
-    socket.emit('cartButton', productId);
-  });
-});
 
 
 

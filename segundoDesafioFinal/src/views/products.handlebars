@@ -3,6 +3,8 @@
     <p>Bienvenido {{user.name}}!</p>
     <p>Email: {{user.email}}</p>
     <p>Rol: {{user.rol}}</p>
+    <p>ID:{{user._id}} </p>
+     <p>Cart ID:{{cart._id}} </p>
 </div>
 <h1>Lista de Productos con mongo</h1>
 <div>
@@ -80,8 +82,7 @@
         <li>Categoria: {{this.category}}</li>
         <li>Status: {{this.status}}</li>
         <form>
-            <input type="text" id="cartId" class="inputCartId" placeholder="Ingresa el ID del carrito">
-            <button type="submit"  id="cartIdButton"  class="cartButton" data-product-id="{{this._id}}" >Agregar al carrito</button>
+            <button type="submit"    class="cartButton" data-product-id="{{this._id}} " data-cart-id="{{cart._id}}">Agregar al carrito</button>
         </form>
         
         <br>

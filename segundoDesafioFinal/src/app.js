@@ -5,12 +5,12 @@ import handlebars from 'express-handlebars';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js'
 import {Server} from 'socket.io'
-import ProductManager from './service/ProductManager.js';
+// import ProductManager from './service/ProductManager.js';
 
 import mongoose from 'mongoose';
 
 import { productModel } from "./models/product.model.js";
-import { cartModel } from "./models/cart.model.js";
+// import { cartModel } from "./models/cart.model.js";
 
 
 import usersViewRouter from './routes/users.views.router.js';
@@ -18,8 +18,12 @@ import sessionsRouter from './routes/sessions.router.js'
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
+
+
 const app = express();
-const userManager = new ProductManager()
+// const userManager = new ProductManager()
 
 
 const SERVER_PORT = 9090;
@@ -28,9 +32,6 @@ const SERVER_PORT = 9090;
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-//--------------------------------------------------------
-// //Routers
-
 
 
 //--------------------------------------------------------
@@ -77,50 +78,8 @@ socketServer.on('connection', socket=>{
         console.log("Producto eliminado:", deletedProduct);
     });
 
-    let currentCartId = null;
-    let currentProductId = null;
-    socket.on("getCartId",async  cartId => {
-        try {
-            currentCartId = cartId
-            console.log(currentCartId);
-            
-        } catch (error) {
-            console.error("Error al ver carrito:", error);
-            }
-        });
-   
-    socket.on("cartButton", async productId => {
-        
-        try {
-            currentProductId = productId;
-            console.log('currentProductId '+ currentProductId);
-            console.log('currentCartId '+ currentCartId);
-            
 
-            let cart = await cartModel.findOne({_id:currentCartId}).lean()
-            const pid = await productModel.findById({_id:currentProductId}).lean();
-            const productIndex = cart.products.findIndex(p => p.product == currentProductId);
-                if (productIndex >= 0) {
-                    cart.products[productIndex].quantity++;
-                } else {
-                    cart.products.push({ product: currentProductId, quantity: 1 });
-                }
-            console.log(`El _id del cart es: ${cart._id}`);
-            console.log(`El _id del producto es: ${pid._id}`);
-            console.log(pid);
-            let result = await cartModel.updateOne({_id:currentCartId}, cart )
-            console.log(result);
-            
-
-
-        } catch (error) {
-            console.error("Error al ver producto:", error);
-            }
-        });
 });
-
-
-
 
 //--------------------------------------------------------
 
@@ -191,6 +150,13 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+//--------------------------------------------------------
+//Middlewares Passport
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+//--------------------------------------------------------
+//Routers
 app.use('/',viewsRouter);
 app.use('/users',usersViewRouter);
 app.use('/api/sessions',sessionsRouter);

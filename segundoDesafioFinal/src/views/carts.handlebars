@@ -1,9 +1,10 @@
 
 
 <div>
-    <h1>Cartssss</h1>
+    <h1>Carritos </h1>
+    
     {{#each carts}}
-    <h2>Cart{{@index}}</h2>
+    <h2>Cart{{@index}} {{user._id}}</h2>
         {{#each this.products}}
             <li>Codigo: {{this.product.code}}</li>
             <li>Titulo: {{this.product.title}}</li>
