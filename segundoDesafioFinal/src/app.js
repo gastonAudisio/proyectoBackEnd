@@ -1,3 +1,6 @@
+
+//------------------ IMPORTS ---------------------------------
+
 import express from 'express';
 import productRouter from "./routes/products.router.js"
 import cartsRouter from "./routes/carts.router.js"
@@ -20,7 +23,9 @@ import MongoStore from 'connect-mongo';
 
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
+import githubLoginViewRouter from './routes/github-login.views.router.js'
 
+//------------------------------------------------------------
 
 const app = express();
 // const userManager = new ProductManager()
@@ -162,7 +167,7 @@ app.use('/users',usersViewRouter);
 app.use('/api/sessions',sessionsRouter);
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartsRouter);
-
+app.use("/github", githubLoginViewRouter);
 connectMongoDB()
 
 

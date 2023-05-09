@@ -52,6 +52,19 @@ router.post('/', async (req, res)=>{
 })
 
 //------------------------------------------------------------------
+//PUT
+router.put("/:id", async (req, res)=>{
+    try {
+        const {productId} = req.body;
+        const cartId = req.params.id;
+        const updatedCart = await cartModel.findByIdAndUpdate(cartId, {$addToSet: {products: {product: productId}}}, {new: true});
+        res.status(200).json(updatedCart);
+    } catch (error) {
+        console.error("No se pudo actualizar el carrito con Mongoose: " + error);
+        res.status(500).send({error: "No se pudo actualizar el carrito con Mongoose", message: error});
+    }
+})
+//------------------------------------------------------------------
 export default router;
 
 

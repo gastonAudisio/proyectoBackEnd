@@ -10,6 +10,7 @@ const schema = mongoose.Schema({
         unique:true
     },
     age: Number,
-    password:String
+    password:String,
+    loggedBy: String
 })
 export const userModel = mongoose.model(collection,schema);

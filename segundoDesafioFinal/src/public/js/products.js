@@ -13,7 +13,9 @@ const cartButtons = document.querySelectorAll('.cartButton');
 cartButtons.forEach(button => {
   button.addEventListener('click', async (e) => {
     const productId = e.target.dataset.productId; // obtiene el ID del producto que se agregará al carrito
-    const cartId = button.dataset.cartId;
+    const cartId = e.target.button.dataset.cartId;
+    console.log(productId);
+    console.log(cartId);
     console.log("boton apretado");
     try {
       const response = await fetch(`/api/carts/${cartId}`, {
