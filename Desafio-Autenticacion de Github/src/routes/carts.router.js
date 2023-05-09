@@ -64,7 +64,27 @@ router.put("/:id", async (req, res)=>{
         res.status(500).send({error: "No se pudo actualizar el carrito con Mongoose", message: error});
     }
 })
-
+//--------------------------------------------------------------------
+router.delete("/:id/products/:pid", async (req, res) => {
+    try {
+      const productId = req.params.pid;
+      const cartId = req.params.id;
+  
+      const updatedCart = await cartModel.findOneAndUpdate(
+        { _id: cartId },
+        { $pull: { products: { product: productId } } },
+        { new: true }
+      );
+  
+      res.status(200).json(updatedCart);
+    } catch (error) {
+      console.error("No se pudo actualizar el carrito con Mongoose: " + error);
+      res.status(500).send({
+        error: "No se pudo actualizar el carrito con Mongoose",
+        message: error,
+      });
+    }
+  });
 //------------------------------------------------------------------
 export default router;
 

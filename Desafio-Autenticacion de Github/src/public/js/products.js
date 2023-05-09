@@ -45,8 +45,8 @@ document.querySelectorAll('.cartButton').forEach(btn => {
   btn.addEventListener('click', function(event) {
       event.preventDefault();
       const productId = this.dataset.productId;
-      console.log(productId);
-      console.log(cartId);
+      // console.log(productId);
+      // console.log(cartId);
       fetch(`/api/carts/${cartId}`, {
                 method: 'PUT',
                 headers: {
@@ -70,19 +70,41 @@ document.querySelectorAll('.cartButton').forEach(btn => {
       
   });
 });
-
+//----------------------------------------------------------------------
+document.querySelectorAll('.removeProductButton').forEach(btn => {
+  btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      const productId = this.dataset.productId;
+      console.log(productId);
+      console.log(cartId);
+      fetch(`/api/carts/${cartId}/products/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({productId})
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log('Success:', data);
+                alert('Producto eliminado del carrito');
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+      
+  });
+});
 //----------------------------------------------------------------------
 function getProductId(button) {
   const productId = button.dataset.productId;
   return productId;
 }
-
-
-
-
-
-
-
 
 function getId() {
   const idToDelete = document.getElementById("delId").value;
