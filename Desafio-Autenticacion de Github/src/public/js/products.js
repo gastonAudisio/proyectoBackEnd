@@ -8,35 +8,69 @@ const deleteButton = document.getElementById("delButton");
 
 //-------------------------------------------------------------------------
 
-const cartButtons = document.querySelectorAll('.cartButton');
+// document.querySelectorAll('.cartButton').forEach(btn => {
+//   btn.addEventListener('click', function(event) {
+//       event.preventDefault();
+//       const productId = this.dataset.productId;
+//       const cartId = this.dataset.cartId;
+      
+//       fetch(`/api/carts/${cartId}`, {
+//         method: 'PUT',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({productId})
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then(data => {
+//         console.log('Success:', data);
+//       })
+//       .catch(error => {
+//         console.error('Error:', error);
+//       });
+//   });
+// });
 
-cartButtons.forEach(button => {
-  button.addEventListener('click', async (e) => {
-    const productId = e.target.dataset.productId; // obtiene el ID del producto que se agregará al carrito
-    const cartId = e.target.button.dataset.cartId;
-    console.log(productId);
-    console.log(cartId);
-    console.log("boton apretado");
-    try {
-      const response = await fetch(`/api/carts/${cartId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          productId
-        })
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+//----------------------------------------------------------------------
+
+
+
+
+document.querySelectorAll('.cartButton').forEach(btn => {
+  btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      const productId = this.dataset.productId;
+      console.log(productId);
+      console.log(cartId);
+      fetch(`/api/carts/${cartId}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({productId})
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log('Success:', data);
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+      
   });
 });
 
-
-
+//----------------------------------------------------------------------
 function getProductId(button) {
   const productId = button.dataset.productId;
   return productId;

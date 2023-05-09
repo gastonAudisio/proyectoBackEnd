@@ -1,10 +1,10 @@
 
 <div>
-    <p>Bienvenidoo {{user.name}}!</p>
+    <p>Bienvenido {{user.name}}!</p>
     <p>Email: {{user.email}}</p>
     <p>Rol: {{user.rol}}</p>
     <p>ID:{{user._id}} </p>
-     <p>Cart ID:{{user.cart.cart_id}} </p> 
+    <p>Cart ID:{{user.cart.cart_id}} </p> 
 </div>
 <h1>Lista de Productos con mongo</h1>
 <div>
@@ -82,7 +82,7 @@
         <li>Categoria: {{this.category}}</li>
         <li>Status: {{this.status}}</li>
         <form>
-            <button type="submit"    class="cartButton" data-product-id="{{this._id}} " data-cart-id="{{user.cart.cart_id}}">Agregar al carrito</button>
+            <button type="submit"    class="cartButton" data-product-id="{{this._id}}"  >Agregar al carrito</button>
         </form>
         
         <br>
@@ -105,7 +105,9 @@
 <h1>No hay productos</h1>
 {{/if}}
 
-
+<script>
+  const cartId = "{{this.user.cart.cart_id}}";
+</script>
 
 <script src="/js/logout.js"></script>
 <script src="/socket.io/socket.io.js"></script>
