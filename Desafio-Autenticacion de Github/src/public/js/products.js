@@ -62,6 +62,7 @@ document.querySelectorAll('.cartButton').forEach(btn => {
               })
               .then(data => {
                 console.log('Success:', data);
+                alert('Producto agregado al carrito');
               })
               .catch(error => {
                 console.error('Error:', error);
