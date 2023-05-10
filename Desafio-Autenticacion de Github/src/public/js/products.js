@@ -4,41 +4,7 @@ const socket = io();
 const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
 
-
-
-//-------------------------------------------------------------------------
-
-// document.querySelectorAll('.cartButton').forEach(btn => {
-//   btn.addEventListener('click', function(event) {
-//       event.preventDefault();
-//       const productId = this.dataset.productId;
-//       const cartId = this.dataset.cartId;
-      
-//       fetch(`/api/carts/${cartId}`, {
-//         method: 'PUT',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({productId})
-//       })
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then(data => {
-//         console.log('Success:', data);
-//       })
-//       .catch(error => {
-//         console.error('Error:', error);
-//       });
-//   });
-// });
-
 //----------------------------------------------------------------------
-
-
 
 
 document.querySelectorAll('.cartButton').forEach(btn => {

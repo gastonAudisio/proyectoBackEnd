@@ -6,19 +6,43 @@ import { checkUser } from '../routes/sessions.router.js';
 const router = Router();
     
         
-    router.get('/products',checkUser, async (req,res)=>{
+    // router.get('/products',checkUser, async (req,res)=>{
+            
+    //     let page = parseInt(req.query.page);
+    //     if(!page) page=1;
+    //     const user = req.session.user;
+    //     const sort = req.query.sortByPrice ? { price: parseInt(req.query.sortByPrice) } : {};
+    //     let result = await productModel.paginate({}, { page, limit:2, lean:true, sort });
         
-      let page = parseInt(req.query.page);
-      if(!page) page=1;
-      const user = req.session.user;
-      let result = await productModel.paginate({},{page,limit:2,lean:true})
-    //   console.log(result)
-      result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
-      result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
-      result.isValid= !(page<=0||page>result.totalPages)
+    //     //   console.log(result)
+    //     result.prevLink = result.hasPrevPage?`http://localhost:9090/api/products/products?page=${result.prevPage}`:'';
+    //     result.nextLink = result.hasNextPage?`http://localhost:9090/api/products/products?page=${result.nextPage}`:'';
+    //     result.isValid= !(page<=0||page>result.totalPages)
 
-      res.render('products', { ...result, user } );
-  })
+    //     res.render('products', { ...result, user } );
+    // })
+    router.get('/products', checkUser, async (req, res) => {
+        let page = parseInt(req.query.page);
+        if (!page) page = 1;
+        const user = req.session.user;
+        const sort = req.query.sortByPrice ? { price: parseInt(req.query.sortByPrice) } : {};
+      
+        const query = {};
+        if (req.query.code) query.code = req.query.code;
+        if (req.query.title) query.title = { $regex: req.query.title, $options: 'i' };
+        if (req.query.price) query.price = req.query.price;
+        if (req.query.stock) query.stock = req.query.stock;
+        if (req.query.category) query.category = req.query.category;
+        if (req.query.status) query.status = req.query.status;
+      
+        let result = await productModel.paginate(query, { page, limit: 2, lean: true, sort });
+      
+        result.prevLink = result.hasPrevPage ? `http://localhost:9090/api/products/products?page=${result.prevPage}` : '';
+        result.nextLink = result.hasNextPage ? `http://localhost:9090/api/products/products?page=${result.nextPage}` : '';
+        result.isValid = !(page <= 0 || page > result.totalPages);
+      
+        res.render('products', { ...result, user });
+      });
     
       
 
