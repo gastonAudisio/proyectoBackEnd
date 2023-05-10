@@ -3,6 +3,7 @@ const socket = io();
 
 const btnCrearProducto = document.getElementById("btnCrearProducto");
 const deleteButton = document.getElementById("delButton");
+const delAll = document.getElementById("removeAllProducts")
 
 //----------------------------------------------------------------------
 
@@ -76,6 +77,32 @@ function getId() {
   const idToDelete = document.getElementById("delId").value;
   return idToDelete;
 }
+//----------------------------------------------------------------------
+const removeAllProducts = document.getElementById('removeAllProducts');
+removeAllProducts.addEventListener('click', function(event) {
+  event.preventDefault();
+  fetch(`/api/carts/${cartId}/products`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Success:', data);
+    alert('Todos los productos fueron eliminados del carrito');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
+
+//------------------------------------------------------------------------------------
 
 function dataProduct() {
   const inputCodigo = document.getElementById("codigo").value;
@@ -121,3 +148,4 @@ deleteButton.addEventListener("click", (evt) =>{
   let id = getId()
   socket.emit("id", id)
 })
+

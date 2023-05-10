@@ -86,6 +86,27 @@ router.delete("/:id/products/:pid", async (req, res) => {
     }
   });
 //------------------------------------------------------------------
+router.delete("/:id/products", async (req, res) => {
+  try {
+    const cartId = req.params.id;
+
+    const updatedCart = await cartModel.findByIdAndUpdate(
+      { _id: cartId },
+      { $set: { products: [] } },
+      { new: true }
+    );
+
+    res.status(200).json(updatedCart);
+  } catch (error) {
+    console.error("No se pudo actualizar el carrito con Mongoose: " + error);
+    res.status(500).send({
+      error: "No se pudo actualizar el carrito con Mongoose",
+      message: error,
+    });
+  }
+});
+
+//------------------------------------------------------------------
 export default router;
 
 

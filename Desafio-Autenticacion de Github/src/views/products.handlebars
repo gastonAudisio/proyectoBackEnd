@@ -85,10 +85,12 @@
             <button type="submit"    class="cartButton" data-product-id="{{this._id}}"  >Agregar al carrito</button>
         </form>
         <button class="removeProductButton" data-product-id="{{this._id}}" >Eliminar</button>
+
         <br>
         <br>
     {{/each}}
 </div>
+<button id="removeAllProducts" >Eliminar todos los productos del Carrito</button>
 <br/>
 <div>
     {{#if hasPrevPage}}
