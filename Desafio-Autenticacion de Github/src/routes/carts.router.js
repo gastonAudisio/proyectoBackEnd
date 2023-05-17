@@ -52,7 +52,7 @@ router.post('/', async (req, res)=>{
 })
 
 //------------------------------------------------------------------
-//PUT
+//PUT - ADD PRODUCT TO CART
 router.put("/:id", async (req, res)=>{
     try {
         const {productId} = req.body;
@@ -65,6 +65,7 @@ router.put("/:id", async (req, res)=>{
     }
 })
 //--------------------------------------------------------------------
+//DELETE ONE PRODUCT
 router.delete("/:id/products/:pid", async (req, res) => {
     try {
       const productId = req.params.pid;
@@ -86,6 +87,46 @@ router.delete("/:id/products/:pid", async (req, res) => {
     }
   });
 //------------------------------------------------------------------
+
+// PUT - ADD productId to cartId
+router.put("/:id/products/:pid", async (req, res) => {
+  try {
+    const cartId = req.params.cartId;
+    const productId = req.body.productId;
+    const quantity = parseInt(req.body.quantity);
+
+    // Obtener el carrito actual
+    const cart = await cartModel.findById(cartId);
+
+    // Buscar el producto en el carrito
+    const productIndex = cart.products.findIndex(p => p.productId === productId);
+
+    if (productIndex !== -1) {
+      // Si el producto ya está en el carrito, actualizar la cantidad
+      cart.products[productIndex].quantity += quantity;
+    } else {
+      // Si el producto no está en el carrito, agregarlo
+      cart.products.push({ productId, quantity });
+    }
+
+    // Actualizar el carrito en la base de datos
+    const updatedCart = await cartModel.findByIdAndUpdate(
+      { _id: cartId },
+      { $set: { products: cart.products } },
+      { new: true }
+    );
+
+    res.status(200).json(updatedCart);
+  } catch (error) {
+    console.error("No se pudo agregar el producto al carrito con Mongoose: " + error);
+    res.status(500).send({
+      error: "No se pudo agregar el producto al carrito con Mongoose",
+      message: error,
+    });
+  }
+});
+//-------------------------------------------------------------------
+// DELETE ALL PRODUCTS
 router.delete("/:id/products", async (req, res) => {
   try {
     const cartId = req.params.id;
@@ -105,7 +146,6 @@ router.delete("/:id/products", async (req, res) => {
     });
   }
 });
-
 //------------------------------------------------------------------
 export default router;
 

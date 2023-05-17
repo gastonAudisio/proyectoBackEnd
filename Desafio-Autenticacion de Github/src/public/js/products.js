@@ -12,8 +12,8 @@ document.querySelectorAll('.cartButton').forEach(btn => {
   btn.addEventListener('click', function(event) {
       event.preventDefault();
       const productId = this.dataset.productId;
-      // console.log(productId);
-      // console.log(cartId);
+      console.log(productId);
+      console.log(cartId);
       fetch(`/api/carts/${cartId}`, {
                 method: 'PUT',
                 headers: {
